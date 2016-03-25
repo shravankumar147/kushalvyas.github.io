@@ -395,3 +395,13 @@ dt:hover > a.headerlink {
     visibility: visible;
     text-decoration:none;
 }
+
+
+.mytagline h2{
+    color:darkred;
+    padding: 5px 5px 15px 5px;
+    margin: 20px 0px 20px 0px;
+    border-bottom: 1px solid rgb(143, 134, 134);
+    font-size: 3em;
+    font-weight:normal;
+}
