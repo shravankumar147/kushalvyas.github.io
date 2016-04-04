@@ -21,6 +21,7 @@
         <link rel="apple-touch-icon" sizes="144x144" href="http://kushalvyas.github.io/theme/images/apple-touch-icon-144x144.png" />
         <link rel="icon" href="http://kushalvyas.github.io/theme/images/apple-touch-icon-144x144.png" />
         <link href="http://kushalvyas.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy | Kushal Vyas - Full Atom Feed" />
+        <link href="http://kushalvyas.github.io/feeds/CV.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy | Kushal Vyas - CV Category Atom Feed" />
         <link href="http://kushalvyas.github.io/feeds/utils.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy | Kushal Vyas - utils Category Atom Feed" />
     </head>
     <body>
@@ -71,12 +72,15 @@ Specially, if you,ve just watched <em><a href="http://www.imdb.com/title/tt12850
 <p><strong>Wget</strong></p>
 <p><a href="https://www.gnu.org/software/wget/" target="_blank">Wget</a> is a basic downloading utility, actually calling it basic would be an understatement
 You can download files, directories, recursive download, filter through files and download them, ftp, multiple downloads, get selected elements and crawl through pages&#8230;It&#8217;s an amazing&nbsp;utility. </p>
-<p>If you don&#8217;t have wget, simple run an apt-get&nbsp;wget</p>
-<p><code>wget http://www.example.com</code></p>
-<p>Or if you want to get all files from the browser&nbsp;directory,</p>
-<p><code>wget -r --no-parent http://your_directory_url</code></p>
-<p>or if you go all <span class="caps">SPARTA</span> on the&nbsp;website, </p>
-<p><code>wget 
+<ul>
+<li>
+<p>If you don&#8217;t have wget, simple run an apt-get wget <br><code>wget http://www.example.com</code></p>
+</li>
+<li>
+<p>Or if you want to get all files from the browser directory, <br> <code>wget -r --no-parent http://your_directory_url</code></p>
+</li>
+<li>
+<p>or if you go all <span class="caps">SPARTA</span> on the website, <br><code>wget 
      --recursive 
      --no-clobber 
      --page-requisites 
@@ -87,6 +91,8 @@ You can download files, directories, recursive download, filter through files an
      --no-parent 
          url</code>
 more details, check out this <a href="http://www.linuxjournal.com/content/downloading-entire-web-site-wget" target="_blank">linux journal post</a> or head out to <a href="https://www.gnu.org/manual/manual.html" target="_blank">Wget</a> </p>
+</li>
+</ul>
 <p>Go through the docs .. find whatever suits your&nbsp;need</p>
 <p><strong>Emacs <span class="amp">&amp;</span> <span class="caps">VI</span></strong>&nbsp;: </p>
 <p><a href="https://en.wikipedia.org/wiki/Editor_war">Emacs or <span class="caps">VI</span></a> , you&#8217;d better end up choosing one and not telling the other side. People will go to war with you, if you say emacs is better than <span class="caps">VI</span> or vice versa .
@@ -94,7 +100,28 @@ more details, check out this <a href="http://www.linuxjournal.com/content/downlo
 <p>And the my favourite .. click to play
 <a href="https://www.youtube.com/watch?v=R0Kzgno5wxA" target="_blank" title="Should I Learn Emacs or Vi?"><img alt="Should I Learn Emacs or Vi?" src="http://img.youtube.com/vi/R0Kzgno5wxA/0.jpg" /></a></center></p>
 <p>Learning either is useful. These are highly customizable editors. You will absolutely stop using other tools once u get accustomed to either of these. Read along <a href="http://unix.stackexchange.com/questions/986/what-are-the-pros-and-cons-of-vim-and-emacs" target="_blank">this <span class="caps">SO</span> post</a> to uncover&nbsp;more.</p>
-<p><strong><strong>more stuff to be added .. stay tuned&nbsp;:P </strong></strong></p>
+<p><strong><span class="caps">GREP</span>&nbsp;:</strong></p>
+<p><span class="caps">GREP</span>, is by far my favourite utility. An amazing tools to perform searches. It uses a regular expression pattern matcher, so it&#8217;s quite easy to detect&nbsp;substrings.</p>
+<ul>
+<li>
+<p>Using grep for cli searches:<br><code>ls --all | grep filname</code></p>
+</li>
+<li>
+<p>Using grep with wget to cli search a webpage<br><code>wget -O - url | grep keyword</code></p>
+</li>
+</ul>
+<p><center><a href="http://kushalvyas.github.io/images/blog_grep.png"><img alt="grep" src="http://kushalvyas.github.io/images/blog_grep.png" /></a></center></p>
+<p><strong>I can go on and on about the utilities, but now I think, it&#8217;s time to check them 
+out&nbsp;yourself.</strong></p>
+<p>Last thing, before I sign out&nbsp;.. </p>
+<p><strong>C-Matrix</strong></p>
+<p>So, pretending to be a hacker, like in those <span class="caps">MATRIX</span> movies, is pretty cool.. and probably, you can pick up someone (let&#8217;s assume that , that&#8217;s&nbsp;possible)</p>
+<p><code>sudo apt-get install cmatrix</code></p>
+<p>and this is the beauty of it
+<center>
+<img alt="cmatrix" src="http://kushalvyas.github.io/images/cmatrix.png" /></p>
+<p></center></p>
+<p><strong><strong>Enjoy , Browse, &#34; Make the world a better place&#34;(Courtesy : <a href="https://www.youtube.com/watch?v=69V__a49xtw">Silicon Valley</a> )&nbsp;:P  </strong></strong></p>
 <section>
 <div class="accordion" id="accordion2">
     <div class="accordion-group">
@@ -130,6 +157,8 @@ more details, check out this <a href="http://www.linuxjournal.com/content/downlo
             <hr/>
             <nav>
             <ul class="articles_timeline">
+ 
+                <li class="next_article"><a href="http://kushalvyas.github.io/CV.html" title="Next: An introduction to Computer&nbsp;Vision">An introduction to Computer&nbsp;Vision</a> »</li>
             </ul>
             </nav>
             </aside>
