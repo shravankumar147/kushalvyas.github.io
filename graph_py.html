@@ -93,7 +93,7 @@
 </pre></div>
 
 
-<p>Let&#8217;s write a toposort now. A topological sort will give the order as to which node is to be processed first in order of execution. You can <a href="https://en.wikipedia.org/wiki/Topological_sorting">read here </a> for more&nbsp;details</p>
+<p>Let&#8217;s write a toposort now. A topological sort will give the order as to which node is to be processed first in order of execution. It has to start with a node having in degree as 0. You can <a href="https://en.wikipedia.org/wiki/Topological_sorting">read here </a> for more&nbsp;details</p>
 <div class="highlight"><pre><span class="n">vertices</span> <span class="o">=</span> <span class="mi">6</span>
 <span class="n">adj</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span> <span class="p">]</span>
 <span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">vertices</span><span class="p">)]</span>

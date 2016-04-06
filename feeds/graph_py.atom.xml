@@ -27,7 +27,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Let&amp;#8217;s write a toposort now. A topological sort will give the order as to which node is to be processed first in order of execution. You can &lt;a href="https://en.wikipedia.org/wiki/Topological_sorting"&gt;read here &lt;/a&gt; for more&amp;nbsp;details&lt;/p&gt;
+&lt;p&gt;Let&amp;#8217;s write a toposort now. A topological sort will give the order as to which node is to be processed first in order of execution. It has to start with a node having in degree as 0. You can &lt;a href="https://en.wikipedia.org/wiki/Topological_sorting"&gt;read here &lt;/a&gt; for more&amp;nbsp;details&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;vertices&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;
 &lt;span class="n"&gt;adj&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vertices&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;visited&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vertices&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
