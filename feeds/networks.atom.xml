@@ -4,7 +4,7 @@
 &lt;p&gt;Yes.. Speaking of &lt;a href="https://www.samba.org/"&gt;Samba&lt;/a&gt;, its quite easy to setup and install it. You can refer the steps &lt;a href="https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20(Command-line%20interface/Linux%20Terminal)%20-%20Uncomplicated,%20Simple%20and%20Brief%20Way!"&gt;here&lt;/a&gt; but ya.. i&amp;#8217;ll be going over them&amp;nbsp;too..&lt;/p&gt;
 &lt;p&gt;For, ubuntu, I&amp;#8217;d say, simply run these commands
 &lt;center&gt;
-&lt;code&gt;sudo apt-get update&amp;lt;br&amp;gt;sudo apt-get install samba&lt;/code&gt;
+&lt;code&gt;sudo apt-get update&lt;/code&gt; &lt;br&gt; &lt;code&gt;sudo apt-get install samba&lt;/code&gt;
 &lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Once you have installed samba, open the &lt;code&gt;/etc/samba/smb.conf&lt;/code&gt; file and make the changes as&amp;nbsp;below.&lt;/p&gt;
 &lt;ol&gt;
@@ -13,7 +13,7 @@
 &lt;li&gt;&lt;code&gt;sudo &amp;lt;nano | vi | gedit| basically anytexteditor &amp;gt; /etc/samba/smb.conf&lt;/code&gt; &lt;/li&gt;
 &lt;li&gt;Go to the very end of the file . (If your using nano , simply press &amp;#8216;&lt;span class="caps"&gt;ALT&lt;/span&gt;&amp;nbsp;/&amp;#8217; &lt;/li&gt;
 &lt;li&gt;Add the following snippet
-&lt;code&gt;[&amp;lt;name_of_folder]&amp;lt;br&amp;gt;path=/home/&amp;lt;username&amp;gt;/&amp;lt;name_of_folder&amp;gt;&amp;lt;br&amp;gt;read only = no&lt;/code&gt;&lt;/li&gt;
+&lt;code&gt;[&amp;lt;name_of_folder]&lt;/code&gt;&lt;br&gt;&lt;code&gt;path=/home/&amp;lt;username&amp;gt;/&amp;lt;name_of_folder&amp;gt;&lt;/code&gt;&lt;br&gt;&lt;code&gt;read only = no&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Save the file and restart samba &lt;code&gt;sudo service smbd restart&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;To access any samba file, install smbclient. You can run an apt-get install&amp;nbsp;smbclient&lt;/li&gt;
 &lt;li&gt;To checkin &lt;code&gt;smbclient //ipaddress/foldername&lt;/code&gt;.&lt;/li&gt;
