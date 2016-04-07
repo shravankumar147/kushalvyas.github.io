@@ -70,16 +70,16 @@
 <p>Well,this article was long due. Speaking from the perspective of a newcomer to linux, the samba server was something that had caught my eye in my sophomore year. That very next day I had setup a small system at my home. The blog that you are reading right now is stored in my home server. I don&#8217;t have any files locally on my laptop.&nbsp;B) </p>
 <p>Yes.. Speaking of <a href="https://www.samba.org/">Samba</a>, its quite easy to setup and install it. You can refer the steps <a href="https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20(Command-line%20interface/Linux%20Terminal)%20-%20Uncomplicated,%20Simple%20and%20Brief%20Way!">here</a> but ya.. i&#8217;ll be going over them&nbsp;too..</p>
 <p>For, ubuntu, I&#8217;d say, simply run these commands
-<center>
+
 <code>sudo apt-get update</code> <br> <code>sudo apt-get install samba</code>
-</center></p>
+</p>
 <p>Once you have installed samba, open the <code>/etc/samba/smb.conf</code> file and make the changes as&nbsp;below.</p>
 <ol>
 <li>Create a folder to be shared on the network ( /home/<username>/<name_of_folder> )</li>
 <li><code>sudo cp /etc/samba/smb.conf ~</code> . Here you are essentially copying and placing the samba conf file in a safe&nbsp;location.</li>
 <li><code>sudo &lt;nano | vi | gedit| basically anytexteditor &gt; /etc/samba/smb.conf</code> </li>
 <li>Go to the very end of the file . (If your using nano , simply press &#8216;<span class="caps">ALT</span>&nbsp;/&#8217; </li>
-<li>Add the following snippet
+<li>Add the following snippet<br>
 <code>[&lt;name_of_folder]</code><br><code>path=/home/&lt;username&gt;/&lt;name_of_folder&gt;</code><br><code>read only = no</code></li>
 <li>Save the file and restart samba <code>sudo service smbd restart</code></li>
 <li>To access any samba file, install smbclient. You can run an apt-get install&nbsp;smbclient</li>
