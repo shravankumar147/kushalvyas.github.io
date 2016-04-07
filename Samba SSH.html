@@ -6,8 +6,8 @@
         <meta name="author" content="Kushal Vyas" />
         <meta name="copyright" content="Kushal Vyas" />
 
-<meta name="keywords" content="utils, utils, " />
-        <title>&#39;The Social Network&#39; where it all&nbsp;started  · BitsMakeMeCrazy | Kushal Vyas
+<meta name="keywords" content=", networks, " />
+        <title>Using the Samba Server and <span class="caps">SSH</span>  · BitsMakeMeCrazy | Kushal Vyas
 </title>
         <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
@@ -59,77 +59,44 @@
 <article>
 <div class="row-fluid">
     <header class="page_header span10 offset2">
-    <h1><a href="http://kushalvyas.github.io/utils.html"> &#39;The Social Network&#39; where it all&nbsp;started  </a></h1>
+    <h1><a href="http://kushalvyas.github.io/Samba SSH.html"> Using the Samba Server and <span class="caps">SSH</span>  </a></h1>
     </header>
 </div>
 
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
 
-            <p><strong><em>Disclaimer : </em>If ur a windows user &#8230; forgive&nbsp;me</strong></p>
-<p>Moving on, i think every person starting off with linux, must know a few things ..
-Specially, if you,ve just watched <em><a href="http://www.imdb.com/title/tt1285016/">The Social Network</a></em> and you&#8217;ve seen  Jesse Eisenberg hacking away at his&nbsp;screen&#8230; </p>
-<p><center><img alt="gif" src="http://45.media.tumblr.com/tumblr_m24imcJnkB1qjemo2o1_500.gif" /></center></p>
-<p>You&#8217;re probably wondering what is <em>wget</em>, <em>emacs</em>, <em>apache</em> and much more. If not, please rewatch the movie with&nbsp;subtitiles.</p>
-<p><strong>Wget</strong></p>
-<p><a href="https://www.gnu.org/software/wget/" target="_blank">Wget</a> is a basic downloading utility, actually calling it basic would be an understatement
-You can download files, directories, recursive download, filter through files and download them, ftp, multiple downloads, get selected elements and crawl through pages&#8230;It&#8217;s an amazing&nbsp;utility. </p>
-<ul>
-<li>
-<p>If you don&#8217;t have wget, simple run an apt-get wget <br><code>wget http://www.example.com</code></p>
-</li>
-<li>
-<p>Or if you want to get all files from the browser directory, <br> <code>wget -r --no-parent http://your_directory_url</code></p>
-</li>
-<li>
-<p>or if you go all <span class="caps">SPARTA</span> on the website, <br><code>wget 
-     --recursive 
-     --no-clobber 
-     --page-requisites 
-     --html-extension 
-     --convert-links 
-     --restrict-file-names=windows 
-     --domains url_domain 
-     --no-parent 
-         url</code>
-more details, check out this <a href="http://www.linuxjournal.com/content/downloading-entire-web-site-wget" target="_blank">linux journal post</a> or head out to <a href="https://www.gnu.org/manual/manual.html" target="_blank">Wget</a> </p>
-</li>
-</ul>
-<p>Go through the docs .. find whatever suits your&nbsp;need</p>
-<p><strong>Emacs <span class="amp">&amp;</span> <span class="caps">VI</span></strong>&nbsp;: </p>
-<p><a href="https://en.wikipedia.org/wiki/Editor_war">Emacs or <span class="caps">VI</span></a> , you&#8217;d better end up choosing one and not telling the other side. People will go to war with you, if you say emacs is better than <span class="caps">VI</span> or vice versa .
-<center><img alt="evn" src="http://kalyanvarma.net/images/struggle1.gif" /></p>
-<p>And the my favourite .. click to play
-<a href="https://www.youtube.com/watch?v=R0Kzgno5wxA" target="_blank" title="Should I Learn Emacs or Vi?"><img alt="Should I Learn Emacs or Vi?" src="http://img.youtube.com/vi/R0Kzgno5wxA/0.jpg" /></a></center></p>
-<p>Learning either is useful. These are highly customizable editors. You will absolutely stop using other tools once u get accustomed to either of these. Read along <a href="http://unix.stackexchange.com/questions/986/what-are-the-pros-and-cons-of-vim-and-emacs" target="_blank">this <span class="caps">SO</span> post</a> to uncover&nbsp;more.</p>
-<p><strong><span class="caps">GREP</span>&nbsp;:</strong></p>
-<p><span class="caps">GREP</span>, is by far my favourite utility. An amazing tools to perform searches. It uses a regular expression pattern matcher, so it&#8217;s quite easy to detect&nbsp;substrings.</p>
-<ul>
-<li>
-<p>Using grep for cli searches:<br><code>ls --all | grep filname</code></p>
-</li>
-<li>
-<p>Using grep with wget to cli search a webpage<br><code>wget -O - url | grep keyword</code></p>
-</li>
-</ul>
-<p><center><a href="http://kushalvyas.github.io/images/blog_grep.png"><img alt="grep" src="http://kushalvyas.github.io/images/blog_grep.png" /></a></center></p>
-<p><strong>I can go on and on about the utilities, but now I think, it&#8217;s time to check them 
-out&nbsp;yourself.</strong></p>
-<p>Last thing, before I sign out&nbsp;.. </p>
-<p><strong>C-Matrix</strong></p>
-<p>So, pretending to be a hacker, like in those <span class="caps">MATRIX</span> movies, is pretty cool.. and probably, you can pick up someone (let&#8217;s assume that , that&#8217;s&nbsp;possible)</p>
-<p><code>sudo apt-get install cmatrix</code></p>
-<p>and this is the beauty of it
+            <h3>The Samba Server and <span class="caps">SSH</span></h3>
+<p>Well,this article was long due. Speaking from the perspective of a newcomer to linux, the samba server was something that had caught my eye in my sophomore year. That very next day I had setup a small system at my home. The blog that you are reading right now is stored in my home server. I don&#8217;t have any files locally on my laptop.&nbsp;B) </p>
+<p>Yes.. Speaking of <a href="https://www.samba.org/">Samba</a>, its quite easy to setup and install it. You can refer the steps <a href="https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20(Command-line%20interface/Linux%20Terminal)%20-%20Uncomplicated,%20Simple%20and%20Brief%20Way!">here</a> but ya.. i&#8217;ll be going over them&nbsp;too..</p>
+<p>For, ubuntu, I&#8217;d say, simply run these commands
 <center>
-<img alt="cmatrix" src="http://kushalvyas.github.io/images/cmatrix.png" /></p>
-<p></center></p>
-<p><strong><strong>Enjoy , Browse, &#34; Make the world a better place&#34;(Courtesy : <a href="https://www.youtube.com/watch?v=69V__a49xtw">Silicon Valley</a> )&nbsp;:P  </strong></strong></p>
+<code>sudo apt-get update&lt;br&gt;sudo apt-get install samba</code>
+</center></p>
+<p>Once you have installed samba, open the <code>/etc/samba/smb.conf</code> file and make the changes as&nbsp;below.</p>
+<ol>
+<li>Create a folder to be shared on the network ( /home/<username>/<name_of_folder> )</li>
+<li><code>sudo cp /etc/samba/smb.conf ~</code> . Here you are essentially copying and placing the samba conf file in a safe&nbsp;location.</li>
+<li><code>sudo &lt;nano | vi | gedit| basically anytexteditor &gt; /etc/samba/smb.conf</code> </li>
+<li>Go to the very end of the file . (If your using nano , simply press &#8216;<span class="caps">ALT</span>&nbsp;/&#8217; </li>
+<li>Add the following snippet
+<code>[&lt;name_of_folder]&lt;br&gt;path=/home/&lt;username&gt;/&lt;name_of_folder&gt;&lt;br&gt;read only = no</code></li>
+<li>Save the file and restart samba <code>sudo service smbd restart</code></li>
+<li>To access any samba file, install smbclient. You can run an apt-get install&nbsp;smbclient</li>
+<li>To checkin <code>smbclient //ipaddress/foldername</code>.</li>
+</ol>
+<p><strong>Some Tips</strong>
+If you plan on using this, i recommend that you make the server ip static. Goto your router settings and reserve the ip for whichever system you are putting this on. It&#8217;s much simpler to do&nbsp;so.</p>
+<p>Next I also recommend you to set up an <span class="caps">SSH</span> connection over your local machines. This is what I use. Using samba for convinient file transfers and <span class="caps">SSH</span> to control further&nbsp;commands.</p>
+<p>Setting up <span class="caps">SSH</span> for local networks is very simple. Install <span class="caps">SSH</span> using <code>sudo apt-get install SSH</code> and simply type <code>ssh user@IP</code>
+Make sure , both the endpoint machines are equipped with the&nbsp;dependencies.</p>
+<p><strong>Just fire it up and enjoy&#8230; Access your files freely and sit back on your bean bags and&nbsp;relax</strong></p>
 <section>
 <div class="accordion" id="accordion2">
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                href="http://kushalvyas.github.io/utils.html#disqus_thread">
+                href="http://kushalvyas.github.io/Samba SSH.html#disqus_thread">
                 Comments
             </a>
         </div>
@@ -139,8 +106,8 @@ out&nbsp;yourself.</strong></p>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'bitsmakemecrazy';
-        var disqus_identifier = 'http://kushalvyas.github.io/utils.html';
-    var disqus_url = 'http://kushalvyas.github.io/utils.html';
+        var disqus_identifier = 'http://kushalvyas.github.io/Samba SSH.html';
+    var disqus_url = 'http://kushalvyas.github.io/Samba SSH.html';
 
     (function() {
          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -160,7 +127,7 @@ out&nbsp;yourself.</strong></p>
             <nav>
             <ul class="articles_timeline">
  
-                <li class="next_article"><a href="http://kushalvyas.github.io/CV.html" title="Next: An introduction to Computer&nbsp;Vision">An introduction to Computer&nbsp;Vision</a> »</li>
+                <li class="previous_article">« <a href="http://kushalvyas.github.io/graph_py.html" title="Previous: Python Graphs and Topological&nbsp;Sort">Python Graphs and Topological&nbsp;Sort</a></li>
             </ul>
             </nav>
             </aside>
@@ -169,15 +136,9 @@ out&nbsp;yourself.</strong></p>
         <div class="span2" style="float:right;font-size:0.9em;">
  
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2016-03-24T10:20:00+05:30">Mar 24, 2016</time>
+            <time pubdate="pubdate" datetime="2016-04-07T15:55:00+05:30">Apr 7, 2016</time>
             <h4>Category</h4>
-            <a class="category-link" href="/categories.html#utils-ref">utils</a> 
-            <h4>Tags</h4>
-            <ul class="list-of-tags tags-in-article"> 
-                <li><a href="/tags.html#utils-ref">utils
-                    <span>1</span>
-</a></li>
-            </ul>
+            <a class="category-link" href="/categories.html#networks-ref">networks</a> 
 
         </div>
         </section>
