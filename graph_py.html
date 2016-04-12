@@ -1,85 +1,102 @@
 <!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <meta charset="utf-8"> 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Kushal Vyas" />
-        <meta name="copyright" content="Kushal Vyas" />
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="Kushal Vyas" />
+    <meta name="robots" content="index, follow"/>
 
-<meta name="keywords" content=", python, " />
-        <title>Python Graphs and Topological&nbsp;Sort  · BitsMakeMeCrazy | Kushal Vyas
-</title>
-        <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="http://kushalvyas.github.io/theme/css/style.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="http://kushalvyas.github.io/theme/css/solarizedlight.css" media="screen">
-        <link rel="shortcut icon" href="http://kushalvyas.github.io/theme/images/favicon.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="http://kushalvyas.github.io/theme/images/apple-touch-icon.png" />
-        <link rel="apple-touch-icon" sizes="57x57" href="http://kushalvyas.github.io/theme/images/apple-touch-icon-57x57.png" />
-        <link rel="apple-touch-icon" sizes="72x72" href="http://kushalvyas.github.io/theme/images/apple-touch-icon-72x72.png" />
-        <link rel="apple-touch-icon" sizes="114x114" href="http://kushalvyas.github.io/theme/images/apple-touch-icon-114x114.png" />
-        <link rel="apple-touch-icon" sizes="144x144" href="http://kushalvyas.github.io/theme/images/apple-touch-icon-144x144.png" />
-        <link rel="icon" href="http://kushalvyas.github.io/theme/images/apple-touch-icon-144x144.png" />
-        <link href="http://kushalvyas.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy | Kushal Vyas - Full Atom Feed" />
-        <link href="http://kushalvyas.github.io/feeds/CV.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy | Kushal Vyas - CV Category Atom Feed" />
-        <link href="http://kushalvyas.github.io/feeds/networks.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy | Kushal Vyas - networks Category Atom Feed" />
-        <link href="http://kushalvyas.github.io/feeds/python.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy | Kushal Vyas - python Category Atom Feed" />
-        <link href="http://kushalvyas.github.io/feeds/utils.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy | Kushal Vyas - utils Category Atom Feed" />
-    </head>
-    <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="http://kushalvyas.github.io/"><span class=site-name>BitsMakeMeCrazy | Kushal Vyas</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <!-- <li ><a href="http://kushalvyas.github.io">Home</a></li> -->
+    <meta property="og:title" content="Python Graphs and Topological Sort"/>
+    <meta property="og:url" content="http://kushalvyas.github.io/graph_py.html"/>
+    <meta property="og:site_name" content="BitsMakeMeCrazy | Kushal Vyas"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://kushalvyas.github.io/graph_py.html" />
+
+    <title>Python Graphs and Topological Sort | BitsMakeMeCrazy | Kushal Vyas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="http://kushalvyas.github.io/theme/css/main.css" />
+    <link href="http://kushalvyas.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy | Kushal Vyas Atom Feed" />
+
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">
+        stLight.options({
+            publisher: "",
+            doNotHash: false,
+            doNotCopy: false,
+            hashAddressBar: false
+        });
+    </script>
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://kushalvyas.github.io/">BitsMakeMeCrazy | Kushal Vyas </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
                             <li ><a href="http://kushalvyas.github.io/pages/about-me.html">About&nbsp;me</a></li>
                             <li ><a href="http://kushalvyas.github.io/pages/technical.html">Computer&nbsp;Vision</a></li>
                             <li ><a href="http://kushalvyas.github.io/pages/dev, technical.html">Dev</a></li>
-                            <!-- <li ><a href="http://kushalvyas.github.io/categories.html">Categories</a></li>
-                            <li ><a href="http://kushalvyas.github.io/tags.html">Tags</a></li>
-                            <li ><a href="http://kushalvyas.github.io/archives.html">Archives</a></li> -->
-                            <li><form class="navbar-search" action="http://kushalvyas.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
                         </ul>
+
                     </div>
-                </div>
-            </div>
+                </nav>
+            </header><!-- /#banner -->
         </div>
-        <div class="container-fluid">
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
             <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
-<article>
-<div class="row-fluid">
-    <header class="page_header span10 offset2">
-    <h1><a href="http://kushalvyas.github.io/graph_py.html"> Python Graphs and Topological&nbsp;Sort  </a></h1>
-    </header>
-</div>
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://kushalvyas.github.io/graph_py.html" rel="bookmark"
+             title="Permalink to Python Graphs and Topological Sort">Python Graphs and Topological&nbsp;Sort</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://kushalvyas.github.io/author/kushal-vyas.html">Kushal Vyas</a>
+    </address>
 
-<div class="row-fluid">
-        <div class="span8 offset2 article-content">
+    in <a href="http://kushalvyas.github.io/category/graph_py.html">graph_py</a>
 
-            <h3>Graphs using&nbsp;python</h3>
+    on 2016-04-05
+
+
+
+        |
+        <a href="http://kushalvyas.github.io/graph_py.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <h3>Graphs using&nbsp;python</h3>
 <p>It was about yesterday that I was working on a project that involved the use of a graphs and topological sort. However, I was surprised when I saw the implementation sizes. Albeit , python uses substantially less number of <span class="caps">LOC</span>, this example particularly blew my mind. Ive never been able to create graphs in such an easy manner. :P :P (Im overstating cause im a bit ecstatic right now)&nbsp;.</p>
 <p>Beginning with graphs, We&#8217;ll represent the graph using lists, and not matrices (saves memory you&nbsp;know).. </p>
 <p>The graph refers the one shown here (Courtesy : geeksforgeeks.com)<center>
     <img alt="graphimage" src="http://d1gjlxt8vb0knt.cloudfront.net//wp-content/uploads/graph.png" />
 </center></p>
 <p>Let&#8217;s write the python code. We shall read the file, and then create the adjacency lists out of&nbsp;it.</p>
-<div class="highlight"><pre><span></span><span class="c1"># number of vertices</span>
+<div class="highlight"><pre><span class="c"># number of vertices</span>
 <span class="n">vertices</span> <span class="o">=</span> <span class="mi">6</span>
 
-<span class="c1">#create adj lists</span>
+<span class="c">#create adj lists</span>
 <span class="n">adj</span> <span class="o">=</span><span class="p">[</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">vertices</span><span class="p">)]</span>
 
-<span class="c1">#create a function to set an edges</span>
+<span class="c">#create a function to set an edges</span>
 <span class="k">def</span> <span class="nf">set_edge</span><span class="p">(</span><span class="n">vertex_no</span><span class="p">,</span> <span class="n">node_no</span><span class="p">):</span>
     <span class="nb">globals</span><span class="p">()</span>
     <span class="n">adj</span><span class="p">[</span><span class="n">vertex_no</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node_no</span><span class="p">)</span>
@@ -90,12 +107,12 @@
 <span class="n">set_edge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">set_edge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">set_edge</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="c1"># print adj</span>
+<span class="c"># print adj</span>
 </pre></div>
 
 
 <p>Let&#8217;s write a toposort now. A topological sort will give the order as to which node is to be processed first in order of execution. It has to start with a node having in degree as 0. You can <a href="https://en.wikipedia.org/wiki/Topological_sorting">read here </a> for more&nbsp;details</p>
-<div class="highlight"><pre><span></span><span class="n">vertices</span> <span class="o">=</span> <span class="mi">6</span>
+<div class="highlight"><pre><span class="n">vertices</span> <span class="o">=</span> <span class="mi">6</span>
 <span class="n">adj</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span> <span class="p">]</span>
 <span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">vertices</span><span class="p">)]</span>
 <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
@@ -112,9 +129,9 @@
         <span class="k">print</span> <span class="n">each</span><span class="p">,</span> <span class="n">visited</span><span class="p">[</span><span class="n">each</span><span class="p">]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">each</span><span class="p">]:</span>
             <span class="n">toposort</span><span class="p">(</span><span class="n">each</span><span class="p">)</span>
-    <span class="c1">#print &quot;i = &quot;, i</span>
+    <span class="c">#print &quot;i = &quot;, i</span>
     <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="c1">#print output</span>
+    <span class="c">#print output</span>
 
 
 <span class="n">set_edge</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
@@ -123,7 +140,7 @@
 <span class="n">set_edge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">set_edge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">set_edge</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="c1"># print adj</span>
+<span class="c"># print adj</span>
 
 
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">vertices</span><span class="p">):</span>
@@ -142,113 +159,61 @@
 
 <p>If you want to make customised nodes, with some attributes, 
 you can create a&nbsp;class.</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_no</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="n">initialize</span> <span class="n">your</span> <span class="n">node_no</span> <span class="p">,</span> <span class="n">params</span>
 
 
 <span class="n">Then</span> <span class="n">append</span> <span class="n">the</span> <span class="n">node</span> <span class="n">into</span> <span class="n">the</span> <span class="n">adj</span> <span class="nb">list</span>
 </pre></div>
-<section>
-<div class="accordion" id="accordion2">
-    <div class="accordion-group">
-        <div class="accordion-heading">
-            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                href="http://kushalvyas.github.io/graph_py.html#disqus_thread">
-                Comments
-            </a>
-        </div>
-        <div id="disqus_thread" class="accordion-body collapse">
-            <div class="accordion-inner">
-                <div class="comments">
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'bitsmakemecrazy';
-        var disqus_identifier = 'http://kushalvyas.github.io/graph_py.html';
-    var disqus_url = 'http://kushalvyas.github.io/graph_py.html';
 
-    (function() {
-         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-     })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
-            <aside>
-            <hr/>
-            <nav>
-            <ul class="articles_timeline">
- 
-                <li class="previous_article">« <a href="http://kushalvyas.github.io/CV.html" title="Previous: An introduction to Computer&nbsp;Vision">An introduction to Computer&nbsp;Vision</a></li>
- 
-                <li class="next_article"><a href="http://kushalvyas.github.io/Samba SSH.html" title="Next: Using the Samba Server and <span class="caps">SSH</span>">Using the Samba Server and <span class="caps">SSH</span></a> »</li>
-            </ul>
-            </nav>
-            </aside>
-        </div>
-        <section>
-        <div class="span2" style="float:right;font-size:0.9em;">
- 
-            <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2016-04-05T10:00:00+05:30">Apr 5, 2016</time>
-            <h4>Category</h4>
-            <a class="category-link" href="/categories.html#python-ref">python</a> 
-
-        </div>
-        </section>
-</div>
-</article>
-                </div>
-                <div class="span1"></div>
-            </div>
-        </div>
-    </div>
-<footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
-    </ul>
-</div>
-</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-        <script>
-            function validateForm(query)
-            {
-                return (query.length > 0);
-            }
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "graph_py.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//bitsmakemecrazy.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
         </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                    </p>
+                    <p>
+                        <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
 
 <script type="text/javascript">
     var disqus_shortname = 'bitsmakemecrazy';
-
     (function () {
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';
         s.src = '//' + disqus_shortname + '.disqus.com/count.js';
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
-    </script>
-        <script  language="javascript" type="text/javascript">
-            function uncollapse() {
-                var hash_str = window.location.hash;
-                if (window.location.hash.match(/^#comment-\d+$/))
-                {
-                    var hash_str = '#disqus_thread';
-                }
-                $(hash_str).collapse({
-                    toggle: true
-                    })
-            }
-        </script>
-
-        <script type="text/javascript" language="JavaScript">
-            uncollapse(); 
-        </script>
-    </body>
+</script>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</body>
 </html>
