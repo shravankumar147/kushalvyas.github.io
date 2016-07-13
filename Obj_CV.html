@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://kushalvyas.github.io/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://kushalvyas.github.io/theme/stylesheet/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://kushalvyas.github.io/theme/stylesheet/font-awesome.min.css">
+
+
+    <link href="http://kushalvyas.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy | Kushal Vyas's Blog Atom">
+
+
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+<meta name="author" content="Kushal Vyas" />
+<meta name="description" content="A brief introduction on object recognition techniques in CV" />
+<meta name="keywords" content="ObjectRecognition, CV">
+<meta property="og:site_name" content="BitsMakeMeCrazy | Kushal Vyas's Blog"/>
+<meta property="og:title" content="Simple Object Recognition techniques"/>
+<meta property="og:description" content="A brief introduction on object recognition techniques in CV"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://kushalvyas.github.io/Obj_CV.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-07-13 00:00:00+05:30"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://kushalvyas.github.io/author/kushal-vyas.html">
+<meta property="article:section" content="Object Recognition,CV"/>
+<meta property="article:tag" content="ObjectRecognition"/>
+<meta property="article:tag" content="CV"/>
+<meta property="og:image" content="">
+  <title>BitsMakeMeCrazy | Kushal Vyas's Blog &ndash; Simple Object Recognition techniques</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://kushalvyas.github.io">
+        <img src="http://kushalvyas.github.io/theme/img/profile.png" alt="Kushal Vyas" title="Kushal Vyas">
+      </a>
+      <h1><a href="http://kushalvyas.github.io">Kushal Vyas</a></h1>
+      <p>Live your life in binary, for all I know analog is simply complicated</p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://kushalvyas.github.io/pages/about-me.html#about-me">About&nbsp;me</a></li>
+          <li><a href="http://kushalvyas.github.io/pages/technical.html#technical">Computer&nbsp;Vision</a></li>
+          <li><a href="http://kushalvyas.github.io/pages/dev, technical.html#dev, technical">Dev</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-github" href="http://www.github.com/kushalvyas" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-envelope-o" href="mailto:kushalvyaskv@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/kushal_kv" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-youtube" href="http://goo.gl/r4nP66" target="_blank"><i class="fa fa-youtube"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://kushalvyas.github.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="http://kushalvyas.github.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="Obj_CV">Simple Object Recognition&nbsp;techniques</h1>
+    <p>Posted on Wed 13 July 2016 in <a href="http://kushalvyas.github.io/category/object-recognitioncv.html">Object Recognition,CV</a></p>
+  </header>
+  <div>
+    <p>Object recognition is one of the hot topics in computer vision. Particularly, of much significance, it has various applications in robotics, identification, interpretation and such image oriented&nbsp;tasks. </p>
+<p>One can ramify between Object recognition into 4 major subsets such as&nbsp;:</p>
+<ol>
+<li>
+<p><strong>Shape based approach</strong> : We take the object and match the object with global or local features. Much more focus is given on global matching.
+    Eg: Template Matching . However, this isint much&nbsp;sturdy.</p>
+</li>
+<li>
+<p><strong>Geometric approach</strong> : Recognize the object on basis of edges, corners, angles. Then we create a one 2  one match and then make a transformation that handles rotation, scaling, etx.<br />
+    Eg: Matching w.r.t positioning of objects. Classifying&nbsp;patterns</p>
+</li>
+<li>
+<p><strong>Graph based approach</strong> : we match similar types of structures. Encode the relationship between structures rather than the geometry of the&nbsp;figure.  </p>
+</li>
+<li>
+<p><strong>Bag of Visual Words</strong> : I will cover Bag of Words in a seperate post <a href="http://kushalvyas.github.io/BOV.html">Bag of Words</a>.</p>
+</li>
+</ol>
+<p><strong>I&#8217;ll be going through a couple of common techniques. Firstly I&#8217;ll introduce template matching and in the follow, using probabilistic recognition , then moving on to Machine learning applications such as using <span class="caps">BOW</span> models coupled with <span class="caps">SVM</span> , or feature extrapolation and recognition using neural&nbsp;nets.</strong></p>
+<p><strong>Shape based aproach</strong> 
+Well, there are  a few contentions i;d like to make when we use this approach. Shape based approach is not the key or the best method for recognition. But , in industry, all methods have their perks. Say we have an industry converyor belt that is suppossed to carry only boxes or T- Joints or anything so simply extrapolable and uniform that it is feasible to use shape matching rather than going for complex approaches like using nets, or using <span class="caps">SVM</span> along with bag of words. Then I&#8217;d say, template matching or shape based matching is the best bet in terms of accuracy as well as&nbsp;speed. </p>
+<p>Lets dive a little deeper in the aforementioned topic.
+I&#8217;ll be using template matching as an example to explain how Shape based matching works. Consider two images. The template image (T) and the actual image (I). We say that we want to find the location / occurence of template inside the actual&nbsp;image.</p>
+<p>In simple words I can say, return True, iff <span class="math">\(T \subseteq I\)</span>. But life aint so simple. In reality, every pixel needs to be iterated over and checked. It can be said that the a template is belonging to a particular image iff, all pixels match exactly. i.e. the sum of ( Absolute Difference between every pixel must be&nbsp;zero).</p>
+<div class="math">$$SAD(x, y) = \sum_{i=0}^{T_{\text{rows}}}\sum_{j=0}^{T_{\text{cols}}} {\text{Diff}(x+i, y+j,i,j)}$$</div>
+<p>Here&#8217;s how the above formula&nbsp;works.</p>
+<p><span class="math">\(SAD\)</span> : sum of absolute differences.
+<span class="math">\(SAD (x, y)\)</span> : the <span class="caps">SAD</span> of a particular pixel location in the actual Image <span class="math">\(I\)</span> </p>
+<p>Each pixel in <span class="math">\(I\)</span> can be represented using <span class="math">\((x, y)\)</span>. It has an intensity, or color value expresed as <span class="math">\(Intensity(I(x,y))\)</span>.</p>
+<p>Now, a pixel in template image <span class="math">\(T(p,q)\)</span> will have intensity as <span class="math">\(Intensity(T(p,q))\)</span>.</p>
+<p>A search window is created that is of the size of template image. The window is then slid over the actual Image I and every time <span class="caps">SAD</span> is computed. For checking single occurence of template the iterations can be stopped once <span class="caps">SAD</span> is <span class="math">\(0\)</span>, or else it can be continued until the end of <span class="math">\(I\)</span> is&nbsp;reached. </p>
+<p>We&#8217;ll be implementing the algorithm using opencv ,&nbsp;python </p>
+<div class="gist">
+    <script src='https://gist.github.com/c151fd726bb3d439b721b264f3d50843.js'></script>
+    <noscript>
+        <pre><code>"""
+Template matching using opencv
+
+Run : python file.py <templateImage> <actualImage>
+
+
+"""
+
+import sys, cv2
+import numpy as np
+
+def main(template, actualImage):
+	tImage = cv2.imread(template, 0)
+	aImage = cv2.imread(actualImage)
+	aCopy = aImage.copy()
+	aImage = cv2.cvtColor(aImage, cv2.COLOR_BGR2GRAY)
+	th, tw = tImage.shape[:2]
+
+	match = cv2.matchTemplate(aImage, tImage, cv2.TM_SQDIFF)
+	minmaxlocs = cv2.minMaxLoc(match)
+	topcorner = minmaxlocs[-2]
+	bottomcorner=  (topcorner[0] + tw, topcorner[1]+th)
+	cv2.rectangle(aCopy, topcorner, bottomcorner, (0, 0, 255), 2)
+
+	cv2.imshow("actual Iamge", aCopy)
+	cv2.waitKey()
+
+
+if __name__ == '__main__':
+	args = sys.argv[1:]
+	print args
+	if (len(args) is not 2):
+		print "Please pass cmd args for template and actual image"
+		sys.exit(-1)
+
+	main(args[0], args[1])</code></pre>
+    </noscript>
+</div>
+<p>Take a look at <span class="math">\(line 14\)</span>, it states <code>cv2.TM_SQDIFF</code> parameter in matchTemplate(). Opencv&#8217;s rendition for <span class="caps">SAD</span> can be delineated as&nbsp;: 
+</p>
+<div class="math">$$R(x, y) = \sum_{i, j}\ {(\text{T}(i,j) - \text{I}(x+i, y+j))^2}$$</div>
+<p>And here is the output ! We will search a pair of glares from this paraphenalia
+<center>
+<img alt="crop" src="http://kushalvyas.github.io/images/tempCrop.jpg" /> </p>
+<p><img alt="original" src="http://kushalvyas.github.io/images/optemplate.png" />
+</center></p>
+<p>Okay, so template matching can be established using the opencv api. Its&#8217; quite simple to implement in plain ol c++ as well. Not a biggie.  We&#8217;ll use the helper functions for image reading , accessing pixel value, etc. but the rest can be quite easily implemented using a bunch of <code>for loops</code></p>
+<div class="gist">
+    <script src='https://gist.github.com/0667c6a249f3397ee7de1db0cf04555d.js'></script>
+    <noscript>
+        <pre><code>#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/opencv.hpp"
+#include "iostream"
+#include "cmath"
+
+using namespace std;
+using namespace cv;
+
+int main(){
+	cout<<"Template matching \n";
+	Mat tImage, aImage, aCopy;
+	tImage = imread("tempCrop.jpg",0);
+	aImage = imread("temA1.jpg",0);
+	aCopy = imread("temA1.jpg");
+
+
+	// performing template matching using SAD method
+	Size Tsize, Isize ;
+	Tsize = tImage.size();
+	Isize = aImage.size();
+
+	
+	long int minSAD = 999999999999, SAD=0;
+	int xloc=0, yloc=0, sadloc=0;
+	// loop through the actual image
+	int a_i, a_j;
+	for (a_i =0; a_i < Isize.height - Tsize.height; a_i++){
+		for (a_j=0; a_j < Isize.width - Tsize.width; a_j++){
+			SAD = 0;
+
+			// check every pixel of actual image with the template image
+			// loop through the template image
+			for(int t_j=0; t_j < Tsize.width; t_j++){
+				for(int t_i=0; t_i < Tsize.height; t_i++){
+					uchar aT = aImage.at<uchar>( a_i+t_i, a_j+t_j );
+					uchar tT = tImage.at<uchar>(t_i, t_j);
+					SAD += abs(int(aT) - int(tT));
+				}
+			}
+			// cout <<"SASD sis "<<SAD<<endl; 
+			// save the best found position
+			if(minSAD > SAD ){
+				cout <<" SAD "<< SAD<<endl;
+				minSAD = SAD;
+				yloc = a_i;
+				xloc = a_j;
+				sadloc = SAD;
+			}
+		}
+	}
+
+	cout<<"Template size"<<Tsize<<endl;
+	cout<<"Image size"<<Isize<<endl;
+
+	cout<<a_i<<" "<<a_j<<endl;
+
+	cout<<xloc<<","<<yloc<<" SAD is "<<sadloc<<endl;
+
+	// create a rectangle to demarkate the region
+	rectangle(aCopy, Point(xloc, yloc), Point(xloc+Tsize.width, yloc+Tsize.height), Scalar(0,0,255), 2);
+
+	// imshow("Template image", tImage);
+	imshow("Actual image", aImage);
+	imshow("Matched Image", aCopy);
+	waitKey();
+	destroyAllWindows();
+
+	return 0;
+}</code></pre>
+    </noscript>
+</div>
+<p><em>You can find my remaining code on <a href="https://github.com/kushalvyas/ObjectDetectionPython">Github</a></em></p>
+<p><strong> remaining posts on other approaches coming soon&nbsp;&#8230; </strong></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://kushalvyas.github.io/tag/objectrecognition.html">ObjectRecognition</a>
+      <a href="http://kushalvyas.github.io/tag/cv.html">CV</a>
+    </p>
+  </div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'bitsmakemecrazy';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</article>
+
+    <footer>
+        <p>&copy; Kushal Vyas </p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-75632170-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Simple Object Recognition techniques",
+  "headline": "Simple Object Recognition techniques",
+  "datePublished": "2016-07-13 00:00:00+05:30",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Kushal Vyas",
+    "url": "http://kushalvyas.github.io/author/kushal-vyas.html"
+  },
+  "image": "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/profile.png",
+  "url": "http://kushalvyas.github.io/Obj_CV.html",
+  "description": "A brief introduction on object recognition techniques in CV"
+}
+</script></body>
+</html>
