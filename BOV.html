@@ -81,7 +81,83 @@ So moving on to a more complex situation that would give a much profound meaning
 </li>
 </ul>
 <p>Moving on, lets&#8217; decide as to how we perform clustering. The selection of clustering algorithm depends more on what kind of similarity model is to be chosen. There are cases wherein, the plain&#8217;ol clustering impression that everyone so simply elucidates may not be the right choice. For example, there exists various models, such as centroid oriented - Kmeans, or Distribution based models - that involve clustering for statistical data; such places require Density based clustering (<span class="caps">DBSCAN</span>) ,&nbsp;etc. </p>
+<p>Beginning with <strong>KMeans clustering</strong>. Suppose there are X objects, that are to be divided into K clusters. The input can be a set of features, <span class="math">\(X = \{ x_1, x_2, ..., x_n \}\)</span>. </p>
+<ul>
+<li>
+<p>We first define an initial random solution. This initial solution can be called as the cluster centroids. They need to be randomly placed within the bounds of data , and not so callously&nbsp;random. </p>
+</li>
+<li>
+<p>Second comes the <strong>Assignment Step</strong>. What happens here, is that KMeans iterates over each of the input feature / datapoint and decides which is the closest cluster centroid w.r.t itself. Once the closest centroid is established, it is then alloted to that particular&nbsp;centroid.</p>
+</li>
+<li>
+<p>Next is the <strong>Average <span class="amp">&amp;</span> Update Step</strong>. Once we are able to perform the first, most crude clustering, we shall relocate the cluster centroids. The newly computed cluster centroids can be said to be the aggregate of all members of that particular cluster. Hence the centroid moves more inwards for a tightly alligned distribution and more outwards&nbsp;otherwise.</p>
+</li>
+<li>
+<p>Once the avergaing step is accomplished, and the new clusters are computed, the same process is repeated over and over again. Untill &#8230;&nbsp;!!! </p>
+</li>
+<li>
+<p>The ideal condition for stoppage is when there is no change in position of the newly computed cluster centroid with respect to its previous position. This can be further interpreted as that the distance of every datapoint inside its cluster will be minimum w.r.t its mean i.e its centroid. However, there can be a minimum threshold value to stop the clustering process from going on and&nbsp;on.</p>
+</li>
+</ul>
+<p>Below is an illustration of KMeans , in both Python as well as <span class="caps">CPP</span></p>
 <p><strong> <span class="caps">IN</span> <span class="caps">PROGRESS</span> </strong></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div>
   <div class="tag-cloud">
     <p>
