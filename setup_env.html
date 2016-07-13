@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://kushalvyas.github.io/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://kushalvyas.github.io/theme/stylesheet/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://kushalvyas.github.io/theme/stylesheet/font-awesome.min.css">
+
+
+    <link href="http://kushalvyas.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy | Kushal Vyas's Blog Atom">
+
+
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+<meta name="author" content="Kushal Vyas" />
+<meta name="description" content="Setting up computer vision env" />
+<meta name="keywords" content="CV">
+<meta property="og:site_name" content="BitsMakeMeCrazy | Kushal Vyas's Blog"/>
+<meta property="og:title" content="Setup Computer Vision Environment"/>
+<meta property="og:description" content="Setting up computer vision env"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://kushalvyas.github.io/setup_env.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-06-20 00:00:00+05:30"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://kushalvyas.github.io/author/kushal-vyas.html">
+<meta property="article:section" content="CV"/>
+<meta property="article:tag" content="CV"/>
+<meta property="og:image" content="">
+  <title>BitsMakeMeCrazy | Kushal Vyas's Blog &ndash; Setup Computer Vision Environment</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://kushalvyas.github.io">
+        <img src="http://kushalvyas.github.io/theme/img/profile.png" alt="Kushal Vyas" title="Kushal Vyas">
+      </a>
+      <h1><a href="http://kushalvyas.github.io">Kushal Vyas</a></h1>
+      <p>Live your life in binary, for all I know analog is simply complicated</p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://kushalvyas.github.io/pages/about-me.html#about-me">About&nbsp;me</a></li>
+          <li><a href="http://kushalvyas.github.io/pages/technical.html#technical">Computer&nbsp;Vision</a></li>
+          <li><a href="http://kushalvyas.github.io/pages/dev, technical.html#dev, technical">Dev</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-github" href="http://www.github.com/kushalvyas" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-envelope-o" href="mailto:kushalvyaskv@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/kushal_kv" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-youtube" href="http://goo.gl/r4nP66" target="_blank"><i class="fa fa-youtube"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://kushalvyas.github.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="http://kushalvyas.github.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="setup_env">Setup Computer Vision&nbsp;Environment</h1>
+    <p>Posted on Mon 20 June 2016 in <a href="http://kushalvyas.github.io/category/cv.html">CV</a></p>
+  </header>
+  <div>
+    <p>Well, If this is a blog on some of the cool stuff in Computer vision, I think i must mention about the api&#8217;s that one can use, or how to setup your&nbsp;system.</p>
+<p>So yes, there is a myraid choice available to start developing. I personally like <a href="http://opencv.org/">OpenCV</a> because of its&#8217; enormous community support along with its multiplatform&nbsp;facilities.</p>
+<p>Apart from this, there is <a href="http://in.mathworks.com/products/matlab/"><span class="caps">MATLAB</span></a>. 
+Whoaaa&#8230; this is like a computing powerhouse. With so many easy to use functionality, and 
+simply clicking your way into outputs, <span class="caps">MATLAB</span> has one hell of a&nbsp;pricetag.</p>
+<p>Apart from these, there are&nbsp;:</p>
+<ul>
+<li><strong>SimpleCV</strong> : This is actually computer vision made easy.There is no need to spend endless time in figuring out data structures, Matrices, what color format to select ( <span class="caps">8UC1</span>, <span class="caps">32FC1</span>,etc)</li>
+<li><strong>VxL Libraries</strong> (I like them too.. I&#8217;ll use them the day I make a robot :P&nbsp;)</li>
+<li><strong>VLFeat</strong> : This may come out very handy !! It contains some of the finest implementations in vision as well as image understanding&nbsp;algorithms</li>
+<li><strong>ImageJ</strong> : A java library for primarily image&nbsp;processing</li>
+<li><strong><span class="caps">CCV</span></strong> ( Haven&#8217;t used it yet, so .. what do i know&nbsp;)</li>
+</ul>
+<p>Anyway, moving on to the installation, there are plenty of online resources that can be used for downloading and setting up&nbsp;OpenCV.</p>
+<p><strong>For compiling opencv c++</strong>:</p>
+<ul>
+<li>Use <span class="caps">CMAKE</span>. It&#8217;s much simpler to compile using&nbsp;cmake</li>
+</ul>
+<p>You can use this boiler plate file if incase&nbsp;.</p>
+<div class="highlight"><pre><span class="c"># Filename : CMakeLists.txt</span>
+<span class="n">cmake_minimum_required</span><span class="p">(</span><span class="n">VERSION</span> <span class="mf">2.8</span><span class="p">)</span>
+<span class="n">project</span><span class="p">(</span> <span class="n">project_name</span> <span class="p">)</span>
+<span class="n">find_package</span><span class="p">(</span> <span class="n">OpenCV</span> <span class="n">REQUIRED</span> <span class="p">)</span>
+<span class="n">add_executable</span><span class="p">(</span> <span class="n">project_name</span> <span class="n">project_name</span><span class="o">.</span><span class="n">cpp</span> <span class="p">)</span>
+<span class="n">target_link_libraries</span><span class="p">(</span> <span class="n">project_name</span> <span class="err">$</span><span class="p">{</span><span class="n">OpenCV_LIBS</span><span class="p">}</span> <span class="p">)</span>
+</pre></div>
+
+
+<p>simply execute&nbsp;: </p>
+<div class="highlight"><pre><span class="n">cmake</span> <span class="o">.</span>
+<span class="n">make</span> 
+<span class="o">./</span><span class="n">project_name</span>
+</pre></div>
+
+
+<p>Incase you&#8217;re using <strong>python</strong>, </p>
+<div class="highlight"><pre><span class="n">python</span> <span class="n">filename</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<p><strong>To be&nbsp;continued</strong></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://kushalvyas.github.io/tag/cv.html">CV</a>
+    </p>
+  </div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'bitsmakemecrazy';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</article>
+
+    <footer>
+        <p>&copy; Kushal Vyas </p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-75632170-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Setup Computer Vision Environment",
+  "headline": "Setup Computer Vision Environment",
+  "datePublished": "2016-06-20 00:00:00+05:30",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Kushal Vyas",
+    "url": "http://kushalvyas.github.io/author/kushal-vyas.html"
+  },
+  "image": "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/profile.png",
+  "url": "http://kushalvyas.github.io/setup_env.html",
+  "description": "Setting up computer vision env"
+}
+</script></body>
+</html>
