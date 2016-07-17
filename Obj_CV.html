@@ -157,7 +157,12 @@ if __name__ == '__main__':
 <div class="gist">
     <script src='https://gist.github.com/0667c6a249f3397ee7de1db0cf04555d.js'></script>
     <noscript>
-        <pre><code>#include "opencv2/imgproc/imgproc.hpp"
+        <pre><code>/*
+Author : Kushal Vyas
+Code for template matching as implemented by opencv.
+
+*/
+#include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/opencv.hpp"
 #include "iostream"
 #include "cmath"
@@ -193,7 +198,7 @@ int main(){
 				for(int t_i=0; t_i < Tsize.height; t_i++){
 					uchar aT = aImage.at<uchar>( a_i+t_i, a_j+t_j );
 					uchar tT = tImage.at<uchar>(t_i, t_j);
-					SAD += abs(int(aT) - int(tT));
+					SAD += pow(abs(int(aT) - int(tT)),2);
 				}
 			}
 			// cout <<"SASD sis "<<SAD<<endl; 

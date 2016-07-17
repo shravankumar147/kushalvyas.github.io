@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy | Kushal Vyas's Blog</title><link href="http://kushalvyas.github.io/" rel="alternate"></link><link href="http://kushalvyas.github.io/feeds/object-recognition-classification-cv.atom.xml" rel="self"></link><id>http://kushalvyas.github.io/</id><updated>2016-07-13T20:40:00+05:30</updated><entry><title>Bag of Visual Words</title><link href="http://kushalvyas.github.io/BOV.html" rel="alternate"></link><updated>2016-07-13T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:BOV.html</id><summary type="html">&lt;p&gt;Bag of Visual Words is an extention to the &lt;span class="caps"&gt;NLP&lt;/span&gt; algorithm Bag of Words used for image classification. It is far most widely used apart from using &lt;span class="caps"&gt;CNN&lt;/span&gt;&amp;#8217;s. I may not know much about pristine knowledge about machine learning but I can tell for sure that &lt;span class="caps"&gt;BOVW&lt;/span&gt; is one of the finest things I&amp;#8217;ve encountered in my study till&amp;nbsp;now.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy | Kushal Vyas's Blog</title><link href="http://kushalvyas.github.io/" rel="alternate"></link><link href="http://kushalvyas.github.io/feeds/object-recognition-classification-cv.atom.xml" rel="self"></link><id>http://kushalvyas.github.io/</id><updated>2016-07-13T20:40:00+05:30</updated><entry><title>Bag of Visual Words</title><link href="http://kushalvyas.github.io/BOV.html" rel="alternate"></link><updated>2016-07-13T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:BOV.html</id><summary type="html">&lt;p&gt;Bag of Visual Words is an extention to the &lt;span class="caps"&gt;NLP&lt;/span&gt; algorithm Bag of Words used for image classification. It is far most widely used apart from using &lt;span class="caps"&gt;CNN&lt;/span&gt;&amp;#8217;s. I may not know much about pristine knowledge about machine learning but I can tell for sure that &lt;span class="caps"&gt;BOVW&lt;/span&gt; is one of the finest things I&amp;#8217;ve encountered in my vision explorations until&amp;nbsp;now.&lt;/p&gt;
 &lt;p&gt;Lets begin with a few introductory concepts required Bag of words. First is&amp;nbsp;, &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -9,7 +9,11 @@ So moving on to a more complex situation that would give a much profound meaning
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Moving on, lets&amp;#8217; decide as to how we perform clustering. The selection of clustering algorithm depends more on what kind of similarity model is to be chosen. There are cases wherein, the plain&amp;#8217;ol clustering impression that everyone so simply elucidates may not be the right choice. For example, there exists various models, such as centroid oriented - Kmeans, or Distribution based models - that involve clustering for statistical data; such places require Density based clustering (&lt;span class="caps"&gt;DBSCAN&lt;/span&gt;) ,&amp;nbsp;etc. &lt;/p&gt;
-&lt;p&gt;Beginning with &lt;strong&gt;KMeans clustering&lt;/strong&gt;. Suppose there are X objects, that are to be divided into K clusters. The input can be a set of features, &lt;span class="math"&gt;\(X = \{ x_1, x_2, ..., x_n \}\)&lt;/span&gt;. &lt;/p&gt;
+&lt;p&gt;Beginning with &lt;strong&gt;KMeans clustering&lt;/strong&gt;. Suppose there are X objects, that are to be divided into K clusters. The input can be a set of features, &lt;span class="math"&gt;\(X = \{ x_1, x_2, ..., x_n \}\)&lt;/span&gt;. The goal is basically to minimize the distance between each point in the scatter cloud and the assigned&amp;nbsp;centroids. &lt;/p&gt;
+&lt;div class="math"&gt;$$ {\underset {\mathbf {S} }{\operatorname {arg\,min} }}\sum _{i=1}^{k}\sum _{\mathbf {x} \in S_{i}}\left\|\mathbf {x} -{\boldsymbol {\mu }}_{i}\right\|^{2}
+ $$&lt;/div&gt;
+&lt;p&gt;where &lt;span class="math"&gt;\(\mu\)&lt;/span&gt;   is mean of points for each &lt;span class="math"&gt;\(S_i\)&lt;/span&gt;(cluster) and &lt;span class="math"&gt;\(S\)&lt;/span&gt; denotes set of points partitioned into clusters of &lt;span class="math"&gt;\(\{ S_1, S_2, ... S_i&amp;nbsp;\}\)&lt;/span&gt; &lt;/p&gt;
+&lt;p&gt;Hence it can be said that for each cluster centroid, there exists a group of point around it, known as the&amp;nbsp;center. &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;We first define an initial random solution. This initial solution can be called as the cluster centroids. They need to be randomly placed within the bounds of data , and not so callously&amp;nbsp;random. &lt;/p&gt;
@@ -27,8 +31,86 @@ So moving on to a more complex situation that would give a much profound meaning
 &lt;p&gt;The ideal condition for stoppage is when there is no change in position of the newly computed cluster centroid with respect to its previous position. This can be further interpreted as that the distance of every datapoint inside its cluster will be minimum w.r.t its mean i.e its centroid. However, there can be a minimum threshold value to stop the clustering process from going on and&amp;nbsp;on.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Below is an illustration of KMeans , in both Python as well as &lt;span class="caps"&gt;CPP&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Okay, below is a snippet showing how to use KMeans clustering algorithm as provided in &lt;a href="http://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html"&gt;scikit&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/9c6a64a467e7e2c2481ad640061b142c.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;"""
+Using SKLearns API for performing Kmeans clustering.
+Using sklearn.datasets.make_blobs for generating randomized gaussians
+for clustering.
+
+"""
+
+import numpy as np 
+from matplotlib import pyplot as plt 
+from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs 
+
+# create a dataset sample space that will be used
+# to test KMeans. Use function : make_blobs
+# 
+
+n_samples = 1000
+n_features = 5;
+n_clusters = 3;
+
+# aint this sweet 
+X, y = make_blobs(n_samples, n_features) 
+# X =&gt; array of shape [nsamples,nfeatures] ;;; y =&gt; array of shape[nsamples]
+
+# X : generated samples, y : integer labels for cluster membership of each sample
+# 
+# 
+
+# performing KMeans clustering
+
+ret =  KMeans(n_clusters = n_clusters).fit_predict(X)
+print ret
+
+__, ax = plt.subplots(2)
+ax[0].scatter(X[:,0], X[:,1])
+ax[1].scatter(X[:,0], X[:,1], c=ret)
+# plt.scatter
+plt.show()
+
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Why are we using Clusterng &amp;#8230; Why Kmeans &amp;#8230;: &lt;/strong&gt;
+KMeans performs clustering. It is one of the widely used algorithms when it comes to unsupervised learning. Bag of visual words uses a training regimen that involves, firstly, to partition similar features that are extrapolated from the training set of images. To make it more easily understandable, think of it this way. Every image has certain discernable features, patterns with which humans decide as to what the object perceived is. When you see a image of &amp;#8230; umm. let&amp;#8217;s say a motorbike -  significant features are being extrapolated. This features together help in deciding whether what is being seen is actually a motorbike. The collection as well as frequency of particular features is what helps in estimating what object does the image&amp;nbsp;contain,&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bag of Visual Words&lt;/strong&gt;
+The Bag of Words, (which is a &lt;span class="caps"&gt;NLP&lt;/span&gt; model) can be applied to image classification as well. In usual Bag of Words, the frequency of occurence of words is taken into account, whereas here, the frequency of significant extrapolable features of an image are taken into account. And what best than a Histogram when it comes to such a&amp;nbsp;measurement.&lt;/p&gt;
+&lt;p&gt;&lt;u&gt;Some Prerequisites :&lt;/u&gt;  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;First of all, you need a training set. If you&amp;#8217;re using a personal computer, I&amp;#8217;d recommend to use a truncated version of any publically available image datasets (if you&amp;#8217;re worried about your &lt;span class="caps"&gt;PC&lt;/span&gt; taking up too much time during training) or perhaps train using a minimally bounded set of features. I&amp;#8217;d recommend using &lt;a href="http://www.vision.caltech.edu/Image_Datasets/Caltech101/"&gt;Caltech101&lt;/a&gt;. Also check out Caltech256, &lt;span class="caps"&gt;CIFAR10&lt;/span&gt; datasets. They&amp;#8217;re good !! As in real&amp;nbsp;good. &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Secondly please set up either &lt;span class="caps"&gt;LIBSVM&lt;/span&gt; or &lt;span class="caps"&gt;VLFEAT&lt;/span&gt; ( for enhanced vision algos&amp;#8230; like sift) Library, or Any python machine learning toolkit that will provide basic &lt;span class="caps"&gt;SVM&lt;/span&gt; , Kmeans functionaliy. You can visit my previous post on &lt;a href="http://kushalvyas.github.io/setup_env.html"&gt;setting up environments&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Third, please maintain a descent project directory structure. Well documented and well assembled as to where input , output and logs will be stored. This will help a lot for further projects and especially when it comes to making your code&amp;nbsp;modular.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So lets&amp;#8217;&amp;nbsp;proceed. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Steps in &lt;span class="caps"&gt;BOVW&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Split the downloaded dataset into training and testing. You can use the 70-30 ratio or 80-20. But keep in mind, if the training data is not good , there &lt;span class="caps"&gt;WILL&lt;/span&gt; be discrepencies in the&amp;nbsp;output.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;span class="caps"&gt;BOVW&lt;/span&gt; is an example of supervised learning. It&amp;#8217;s always better to keep a mapping of which images belong to what classification label ( a label can be devined as a key/value for identifying to what class/category does the object&amp;nbsp;belongs).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Extract features from the training image sets. One can use opencv_contrib/ vl feat  for &lt;a href="{filename}/articles/features.md"&gt;Feature Extration&lt;/a&gt;(&lt;span class="caps"&gt;SIFT&lt;/span&gt;, &lt;span class="caps"&gt;SURF&lt;/span&gt; more popularly). This essentially converts the image into a feature&amp;nbsp;vector. &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The final step is codebook generation. A codebook can be thought of as a dictionary that registers corresponding mappings between features and their definition in the object. We need to define set of words (essentially the features marked by words) that provides an analogous relation of an object ( being trained) w.r.t. a set of&amp;nbsp;features. &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt; &lt;span class="caps"&gt;IN&lt;/span&gt; &lt;span class="caps"&gt;PROGRESS&lt;/span&gt; &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; &lt;span class="caps"&gt;COMING&lt;/span&gt; &lt;span class="caps"&gt;SOON&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
