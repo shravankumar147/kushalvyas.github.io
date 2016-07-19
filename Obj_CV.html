@@ -76,7 +76,7 @@
 <p>One can ramify between Object recognition into 4 major subsets such as&nbsp;:</p>
 <ol>
 <li>
-<p><strong>Shape based approach</strong> : We take the object and match the object with global or local features. Much more focus is given on global matching.
+<p><strong>Template based approach</strong> : We take the object and match the object with distribution pattern of intensities. It&#8217;s quite exhaustive is not invariant to geometric transformations inside search image
     Eg: Template Matching . However, this isint much&nbsp;sturdy.</p>
 </li>
 <li>
@@ -91,7 +91,7 @@
 </li>
 </ol>
 <p><strong>I&#8217;ll be going through a couple of common techniques. Firstly I&#8217;ll introduce template matching and in the follow, using probabilistic recognition , then moving on to Machine learning applications such as using <span class="caps">BOW</span> models coupled with <span class="caps">SVM</span> , or feature extrapolation and recognition using neural&nbsp;nets.</strong></p>
-<p><strong>Shape based aproach</strong> 
+<p><strong>Template based aproach</strong> 
 Well, there are  a few contentions i;d like to make when we use this approach. Shape based approach is not the key or the best method for recognition. But , in industry, all methods have their perks. Say we have an industry converyor belt that is suppossed to carry only boxes or T- Joints or anything so simply extrapolable and uniform that it is feasible to use shape matching rather than going for complex approaches like using nets, or using <span class="caps">SVM</span> along with bag of words. Then I&#8217;d say, template matching or shape based matching is the best bet in terms of accuracy as well as&nbsp;speed. </p>
 <p>Lets dive a little deeper in the aforementioned topic.
 I&#8217;ll be using template matching as an example to explain how Shape based matching works. Consider two images. The template image (T) and the actual image (I). We say that we want to find the location / occurence of template inside the actual&nbsp;image.</p>

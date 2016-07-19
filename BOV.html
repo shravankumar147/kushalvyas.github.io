@@ -21,7 +21,7 @@
 <meta name="description" content="Implementing Bag of Visual words for Object Recognition" />
 <meta name="keywords" content="ObjectRecognition">
 <meta property="og:site_name" content="BitsMakeMeCrazy | Kushal Vyas's Blog"/>
-<meta property="og:title" content="Bag of Visual Words"/>
+<meta property="og:title" content="Bag of Visual Words Model for Object Classification and Recognition"/>
 <meta property="og:description" content="Implementing Bag of Visual words for Object Recognition"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="http://kushalvyas.github.io/BOV.html"/>
@@ -32,7 +32,7 @@
 <meta property="article:section" content="Object Recognition, Classification, CV"/>
 <meta property="article:tag" content="ObjectRecognition"/>
 <meta property="og:image" content="">
-  <title>BitsMakeMeCrazy | Kushal Vyas's Blog &ndash; Bag of Visual Words</title>
+  <title>BitsMakeMeCrazy | Kushal Vyas's Blog &ndash; Bag of Visual Words Model for Object Classification and Recognition</title>
 </head>
 <body>
   <aside>
@@ -67,15 +67,28 @@
 
 <article>
   <header>
-    <h1 id="BOV">Bag of Visual&nbsp;Words</h1>
+    <h1 id="BOV">Bag of Visual Words Model for Object Classification and&nbsp;Recognition</h1>
     <p>Posted on Wed 13 July 2016 in <a href="http://kushalvyas.github.io/category/object-recognition-classification-cv.html">Object Recognition, Classification, CV</a></p>
   </header>
   <div>
-    <p>Bag of Visual Words is an extention to the <span class="caps">NLP</span> algorithm Bag of Words used for image classification. It is far most widely used apart from using <span class="caps">CNN</span>&#8217;s. I may not know much about pristine knowledge about machine learning but I can tell for sure that <span class="caps">BOVW</span> is one of the finest things I&#8217;ve encountered in my vision explorations until&nbsp;now.</p>
+    <p>Bag of Visual Words is an extention to the <span class="caps">NLP</span> algorithm Bag of Words used for image classification. Other than <span class="caps">CNN</span>, it is quite widely used. I sure want to tell that <span class="caps">BOVW</span> is one of the finest things I&#8217;ve encountered in my vision explorations until&nbsp;now.</p>
+<p>So what&#8217;s the difference between Object Detection and Objet Recognition .. !! 
+Well, recognition simply involves stating whether an image contains a specific object or no. whereas detection also demands the position of the object inside the image. So say, there is an input image containing a cup, saucer, bottle, etc. The task is to be able to recognize which of the objects are contained in the&nbsp;image.</p>
+<p><br></p>
+<p><span class="caps">BOV</span> was developed by <a href="" target="_blank">CSurka et. al</a> essentially creates a vocabulary that can best describe the image in terms of extrapolable features. It follows 4 simple&nbsp;steps</p>
+<ul>
+<li>Determination of Image features of a given&nbsp;label </li>
+<li>Construction of visual vocabulary by clustering, followed by frequency&nbsp;analysis</li>
+<li>Classification of images based on vocabulary&nbsp;genereated</li>
+<li>Obtain most optimum class for query&nbsp;image </li>
+</ul>
+<p><br></p>
+<p>To implement this, we shall be using : Opencv (3.x), sklearn (0.17), caltech101 dataset( trimmed&nbsp;version)</p>
+<p>Lets first understand what a feature is. One can say that a feauture is any discernable, and a significant point/group of points in an image. What to select as a feature depends on the application such as corner points, edges, blobs, <span class="caps">DOG</span> , etc. And to ease out our troubles, <a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank">David Lowe</a> developed <a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"><span class="caps">SIFT</span></a> : Scale Invariant Feature Transform. <span class="caps">SIFT</span> is extensively used today. We will be using <span class="caps">SIFT</span> as well. Please note, that algorithms such as <span class="caps">SIFT</span>, <span class="caps">SURF</span> which are patented are not available in the master version of Opencv-Itseez. To be able to use it, either install opencv_contrib or <span class="caps">VLFEAT</span> (You may want to check out my <a href="http://kushalvyas.github.io/setup_env.html">previous post on environment settings </a>).</p>
 <p>Lets begin with a few introductory concepts required Bag of words. First is&nbsp;, </p>
 <ul>
 <li>
-<p>Clustering : Lets say there is a bunch of Wrigleys Skittles (confectionary). And someone is to tell you to group them according to their color. It&#8217;s quite simple .. aint it! Simply seperate all red, blue, green, etc in different parts of the room. Here, we differentiated and seperated them on basis of <strong>color only</strong>.<br />
+<p>Clustering : Lets say there is a bunch of Wrigleys Skittles. And someone is to tell you to group them according to their color. It&#8217;s quite simple .. aint it! Simply seperate all red, blue, green, etc in different parts of the room. Here, we differentiated and seperated them on basis of <strong>color only</strong>.<br />
 So moving on to a more complex situation that would give a much profound meaning to clustering. Suppose there is a room full of utilities, be it accesories, clothing, utensils, electronics, etc. Now, if someone is told to seperate out into well formed groups of similar items, one would essentially be performing&nbsp;clustering. </p>
 <p>So yes, clustering can be said as the grouping a set of objects in such a way that objects in the same group are much similar, than to those in other&nbsp;groups/sets</p>
 </li>
@@ -105,24 +118,9 @@ So moving on to a more complex situation that would give a much profound meaning
 </ul>
 <p>Okay, below is a snippet showing how to use KMeans clustering algorithm as provided in <a href="http://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html">scikit</a>.</p>
 <div class="gist">
-    <script src='https://gist.github.com/9c6a64a467e7e2c2481ad640061b142c.js'></script>
+    <script src='https://gist.github.com/590b7e1adad10656793cfb78f041193a.js'></script>
     <noscript>
-        <pre><code>"""
-Using SKLearns API for performing Kmeans clustering.
-Using sklearn.datasets.make_blobs for generating randomized gaussians
-for clustering.
-
-"""
-
-import numpy as np 
-from matplotlib import pyplot as plt 
-from sklearn.cluster import KMeans
-from sklearn.datasets import make_blobs 
-
-# create a dataset sample space that will be used
-# to test KMeans. Use function : make_blobs
-# 
-
+        <pre><code>
 n_samples = 1000
 n_features = 5;
 n_clusters = 3;
@@ -132,21 +130,9 @@ X, y = make_blobs(n_samples, n_features)
 # X => array of shape [nsamples,nfeatures] ;;; y => array of shape[nsamples]
 
 # X : generated samples, y : integer labels for cluster membership of each sample
-# 
-# 
-
 # performing KMeans clustering
 
-ret =  KMeans(n_clusters = n_clusters).fit_predict(X)
-print ret
-
-__, ax = plt.subplots(2)
-ax[0].scatter(X[:,0], X[:,1])
-ax[1].scatter(X[:,0], X[:,1], c=ret)
-# plt.scatter
-plt.show()
-
-</code></pre>
+ret =  KMeans(n_clusters = n_clusters).fit_predict(X)</code></pre>
     </noscript>
 </div>
 <!-- output -->
@@ -155,22 +141,22 @@ plt.show()
 <p><center>Here&#8217;s a sample output for clustering using 3 clusters on a set of 1000 samples.</center></p>
 <p><strong>Why are we using Clusterng &#8230; Why Kmeans &#8230;: </strong>
 KMeans performs clustering. It is one of the widely used algorithms when it comes to unsupervised learning. Bag of visual words uses a training regimen that involves, firstly, to partition similar features that are extrapolated from the training set of images. To make it more easily understandable, think of it this way. Every image has certain discernable features, patterns with which humans decide as to what the object perceived is. When you see a image of &#8230; umm. let&#8217;s say a motorbike -  significant features are being extrapolated. This features together help in deciding whether what is being seen is actually a motorbike. The collection as well as frequency of particular features is what helps in estimating what object does the image&nbsp;contain,</p>
-<p><strong>Bag of Visual Words</strong>
-The Bag of Words, (which is a <span class="caps">NLP</span> model) can be applied to image classification as well. In usual Bag of Words, the frequency of occurence of words is taken into account, whereas here, the frequency of significant extrapolable features of an image are taken into account. And what best than a Histogram when it comes to such a&nbsp;measurement.</p>
 <p><u>Some Prerequisites :</u>  </p>
 <ul>
 <li>
 <p>First of all, you need a training set. If you&#8217;re using a personal computer, I&#8217;d recommend to use a truncated version of any publically available image datasets (if you&#8217;re worried about your <span class="caps">PC</span> taking up too much time during training) or perhaps train using a minimally bounded set of features. I&#8217;d recommend using <a href="http://www.vision.caltech.edu/Image_Datasets/Caltech101/">Caltech101</a>. Also check out Caltech256, <span class="caps">CIFAR10</span> datasets. They&#8217;re good !! As in real&nbsp;good. </p>
 </li>
 <li>
-<p>Secondly please set up either <span class="caps">LIBSVM</span> or <span class="caps">VLFEAT</span> ( for enhanced vision algos&#8230; like sift) Library, or Any python machine learning toolkit that will provide basic <span class="caps">SVM</span> , Kmeans functionaliy. You can visit my previous post on <a href="http://kushalvyas.github.io/setup_env.html">setting up environments</a>.</p>
+<p>Secondly please set up either <span class="caps">LIBSVM</span> , <span class="caps">SKLEARN</span>,  <span class="caps">VLFEAT</span> ( for enhanced vision algos&#8230; like sift) Library, or Any python machine learning toolkit that will provide basic <span class="caps">SVM</span> , Kmeans functionaliy. You can visit my previous post on <a href="http://kushalvyas.github.io/setup_env.html">setting up environments</a>.</p>
 </li>
 <li>
 <p>Third, please maintain a descent project directory structure. Well documented and well assembled as to where input , output and logs will be stored. This will help a lot for further projects and especially when it comes to making your code&nbsp;modular.</p>
 </li>
 </ul>
 <p>So lets&#8217;&nbsp;proceed. </p>
-<p><strong>Steps in <span class="caps">BOVW</span></strong></p>
+<p><strong>Bag of Visual&nbsp;Words</strong></p>
+<p>This is a supervised learning model. There will be a training set and a testing set.
+You can find my implementation on <a href="https://github.com/kushalvyas/ObjectDetectionPython" target="_blank">Github</a>. </p>
 <ol>
 <li>
 <p>Split the downloaded dataset into training and testing. You can use the 70-30 ratio or 80-20. But keep in mind, if the training data is not good , there <span class="caps">WILL</span> be discrepencies in the&nbsp;output.</p>
@@ -285,8 +271,8 @@ The Bag of Words, (which is a <span class="caps">NLP</span> model) can be applie
 {
   "@context": "http://schema.org",
   "@type": "BlogPosting",
-  "name": "Bag of Visual Words",
-  "headline": "Bag of Visual Words",
+  "name": "Bag of Visual Words Model for Object Classification and Recognition",
+  "headline": "Bag of Visual Words Model for Object Classification and Recognition",
   "datePublished": "2016-07-13 20:40:00+05:30",
   "dateModified": "",
   "author": {

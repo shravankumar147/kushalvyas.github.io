@@ -3,7 +3,7 @@
 &lt;p&gt;One can ramify between Object recognition into 4 major subsets such as&amp;nbsp;:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Shape based approach&lt;/strong&gt; : We take the object and match the object with global or local features. Much more focus is given on global matching.
+&lt;p&gt;&lt;strong&gt;Template based approach&lt;/strong&gt; : We take the object and match the object with distribution pattern of intensities. It&amp;#8217;s quite exhaustive is not invariant to geometric transformations inside search image
     Eg: Template Matching . However, this isint much&amp;nbsp;sturdy.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -18,7 +18,7 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;I&amp;#8217;ll be going through a couple of common techniques. Firstly I&amp;#8217;ll introduce template matching and in the follow, using probabilistic recognition , then moving on to Machine learning applications such as using &lt;span class="caps"&gt;BOW&lt;/span&gt; models coupled with &lt;span class="caps"&gt;SVM&lt;/span&gt; , or feature extrapolation and recognition using neural&amp;nbsp;nets.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Shape based aproach&lt;/strong&gt; 
+&lt;p&gt;&lt;strong&gt;Template based aproach&lt;/strong&gt; 
 Well, there are  a few contentions i;d like to make when we use this approach. Shape based approach is not the key or the best method for recognition. But , in industry, all methods have their perks. Say we have an industry converyor belt that is suppossed to carry only boxes or T- Joints or anything so simply extrapolable and uniform that it is feasible to use shape matching rather than going for complex approaches like using nets, or using &lt;span class="caps"&gt;SVM&lt;/span&gt; along with bag of words. Then I&amp;#8217;d say, template matching or shape based matching is the best bet in terms of accuracy as well as&amp;nbsp;speed. &lt;/p&gt;
 &lt;p&gt;Lets dive a little deeper in the aforementioned topic.
 I&amp;#8217;ll be using template matching as an example to explain how Shape based matching works. Consider two images. The template image (T) and the actual image (I). We say that we want to find the location / occurence of template inside the actual&amp;nbsp;image.&lt;/p&gt;

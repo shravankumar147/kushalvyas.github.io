@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy | Kushal Vyas's Blog</title><link href="http://kushalvyas.github.io/" rel="alternate"></link><link href="http://kushalvyas.github.io/feeds/all.atom.xml" rel="self"></link><id>http://kushalvyas.github.io/</id><updated>2016-07-13T20:40:00+05:30</updated><entry><title>Bag of Visual Words</title><link href="http://kushalvyas.github.io/BOV.html" rel="alternate"></link><updated>2016-07-13T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:BOV.html</id><summary type="html">&lt;p&gt;Bag of Visual Words is an extention to the &lt;span class="caps"&gt;NLP&lt;/span&gt; algorithm Bag of Words used for image classification. It is far most widely used apart from using &lt;span class="caps"&gt;CNN&lt;/span&gt;&amp;#8217;s. I may not know much about pristine knowledge about machine learning but I can tell for sure that &lt;span class="caps"&gt;BOVW&lt;/span&gt; is one of the finest things I&amp;#8217;ve encountered in my vision explorations until&amp;nbsp;now.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy | Kushal Vyas's Blog</title><link href="http://kushalvyas.github.io/" rel="alternate"></link><link href="http://kushalvyas.github.io/feeds/all.atom.xml" rel="self"></link><id>http://kushalvyas.github.io/</id><updated>2016-07-13T20:40:00+05:30</updated><entry><title>Bag of Visual Words Model for Object Classification and Recognition</title><link href="http://kushalvyas.github.io/BOV.html" rel="alternate"></link><updated>2016-07-13T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:BOV.html</id><summary type="html">&lt;p&gt;Bag of Visual Words is an extention to the &lt;span class="caps"&gt;NLP&lt;/span&gt; algorithm Bag of Words used for image classification. Other than &lt;span class="caps"&gt;CNN&lt;/span&gt;, it is quite widely used. I sure want to tell that &lt;span class="caps"&gt;BOVW&lt;/span&gt; is one of the finest things I&amp;#8217;ve encountered in my vision explorations until&amp;nbsp;now.&lt;/p&gt;
+&lt;p&gt;So what&amp;#8217;s the difference between Object Detection and Objet Recognition .. !! 
+Well, recognition simply involves stating whether an image contains a specific object or no. whereas detection also demands the position of the object inside the image. So say, there is an input image containing a cup, saucer, bottle, etc. The task is to be able to recognize which of the objects are contained in the&amp;nbsp;image.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="caps"&gt;BOV&lt;/span&gt; was developed by &lt;a href="" target="_blank"&gt;CSurka et. al&lt;/a&gt; essentially creates a vocabulary that can best describe the image in terms of extrapolable features. It follows 4 simple&amp;nbsp;steps&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Determination of Image features of a given&amp;nbsp;label &lt;/li&gt;
+&lt;li&gt;Construction of visual vocabulary by clustering, followed by frequency&amp;nbsp;analysis&lt;/li&gt;
+&lt;li&gt;Classification of images based on vocabulary&amp;nbsp;genereated&lt;/li&gt;
+&lt;li&gt;Obtain most optimum class for query&amp;nbsp;image &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;To implement this, we shall be using : Opencv (3.x), sklearn (0.17), caltech101 dataset( trimmed&amp;nbsp;version)&lt;/p&gt;
+&lt;p&gt;Lets first understand what a feature is. One can say that a feauture is any discernable, and a significant point/group of points in an image. What to select as a feature depends on the application such as corner points, edges, blobs, &lt;span class="caps"&gt;DOG&lt;/span&gt; , etc. And to ease out our troubles, &lt;a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"&gt;David Lowe&lt;/a&gt; developed &lt;a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"&gt;&lt;span class="caps"&gt;SIFT&lt;/span&gt;&lt;/a&gt; : Scale Invariant Feature Transform. &lt;span class="caps"&gt;SIFT&lt;/span&gt; is extensively used today. We will be using &lt;span class="caps"&gt;SIFT&lt;/span&gt; as well. Please note, that algorithms such as &lt;span class="caps"&gt;SIFT&lt;/span&gt;, &lt;span class="caps"&gt;SURF&lt;/span&gt; which are patented are not available in the master version of Opencv-Itseez. To be able to use it, either install opencv_contrib or &lt;span class="caps"&gt;VLFEAT&lt;/span&gt; (You may want to check out my &lt;a href="http://kushalvyas.github.io/setup_env.html"&gt;previous post on environment settings &lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;Lets begin with a few introductory concepts required Bag of words. First is&amp;nbsp;, &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Clustering : Lets say there is a bunch of Wrigleys Skittles (confectionary). And someone is to tell you to group them according to their color. It&amp;#8217;s quite simple .. aint it! Simply seperate all red, blue, green, etc in different parts of the room. Here, we differentiated and seperated them on basis of &lt;strong&gt;color only&lt;/strong&gt;.&lt;br /&gt;
+&lt;p&gt;Clustering : Lets say there is a bunch of Wrigleys Skittles. And someone is to tell you to group them according to their color. It&amp;#8217;s quite simple .. aint it! Simply seperate all red, blue, green, etc in different parts of the room. Here, we differentiated and seperated them on basis of &lt;strong&gt;color only&lt;/strong&gt;.&lt;br /&gt;
 So moving on to a more complex situation that would give a much profound meaning to clustering. Suppose there is a room full of utilities, be it accesories, clothing, utensils, electronics, etc. Now, if someone is told to seperate out into well formed groups of similar items, one would essentially be performing&amp;nbsp;clustering. &lt;/p&gt;
 &lt;p&gt;So yes, clustering can be said as the grouping a set of objects in such a way that objects in the same group are much similar, than to those in other&amp;nbsp;groups/sets&lt;/p&gt;
 &lt;/li&gt;
@@ -33,24 +46,9 @@ So moving on to a more complex situation that would give a much profound meaning
 &lt;/ul&gt;
 &lt;p&gt;Okay, below is a snippet showing how to use KMeans clustering algorithm as provided in &lt;a href="http://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html"&gt;scikit&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="gist"&gt;
-    &lt;script src='https://gist.github.com/9c6a64a467e7e2c2481ad640061b142c.js'&gt;&lt;/script&gt;
+    &lt;script src='https://gist.github.com/590b7e1adad10656793cfb78f041193a.js'&gt;&lt;/script&gt;
     &lt;noscript&gt;
-        &lt;pre&gt;&lt;code&gt;"""
-Using SKLearns API for performing Kmeans clustering.
-Using sklearn.datasets.make_blobs for generating randomized gaussians
-for clustering.
-
-"""
-
-import numpy as np 
-from matplotlib import pyplot as plt 
-from sklearn.cluster import KMeans
-from sklearn.datasets import make_blobs 
-
-# create a dataset sample space that will be used
-# to test KMeans. Use function : make_blobs
-# 
-
+        &lt;pre&gt;&lt;code&gt;
 n_samples = 1000
 n_features = 5;
 n_clusters = 3;
@@ -60,21 +58,9 @@ X, y = make_blobs(n_samples, n_features)
 # X =&gt; array of shape [nsamples,nfeatures] ;;; y =&gt; array of shape[nsamples]
 
 # X : generated samples, y : integer labels for cluster membership of each sample
-# 
-# 
-
 # performing KMeans clustering
 
-ret =  KMeans(n_clusters = n_clusters).fit_predict(X)
-print ret
-
-__, ax = plt.subplots(2)
-ax[0].scatter(X[:,0], X[:,1])
-ax[1].scatter(X[:,0], X[:,1], c=ret)
-# plt.scatter
-plt.show()
-
-&lt;/code&gt;&lt;/pre&gt;
+ret =  KMeans(n_clusters = n_clusters).fit_predict(X)&lt;/code&gt;&lt;/pre&gt;
     &lt;/noscript&gt;
 &lt;/div&gt;
 &lt;!-- output --&gt;
@@ -83,22 +69,22 @@ plt.show()
 &lt;p&gt;&lt;center&gt;Here&amp;#8217;s a sample output for clustering using 3 clusters on a set of 1000 samples.&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Why are we using Clusterng &amp;#8230; Why Kmeans &amp;#8230;: &lt;/strong&gt;
 KMeans performs clustering. It is one of the widely used algorithms when it comes to unsupervised learning. Bag of visual words uses a training regimen that involves, firstly, to partition similar features that are extrapolated from the training set of images. To make it more easily understandable, think of it this way. Every image has certain discernable features, patterns with which humans decide as to what the object perceived is. When you see a image of &amp;#8230; umm. let&amp;#8217;s say a motorbike -  significant features are being extrapolated. This features together help in deciding whether what is being seen is actually a motorbike. The collection as well as frequency of particular features is what helps in estimating what object does the image&amp;nbsp;contain,&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Bag of Visual Words&lt;/strong&gt;
-The Bag of Words, (which is a &lt;span class="caps"&gt;NLP&lt;/span&gt; model) can be applied to image classification as well. In usual Bag of Words, the frequency of occurence of words is taken into account, whereas here, the frequency of significant extrapolable features of an image are taken into account. And what best than a Histogram when it comes to such a&amp;nbsp;measurement.&lt;/p&gt;
 &lt;p&gt;&lt;u&gt;Some Prerequisites :&lt;/u&gt;  &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;First of all, you need a training set. If you&amp;#8217;re using a personal computer, I&amp;#8217;d recommend to use a truncated version of any publically available image datasets (if you&amp;#8217;re worried about your &lt;span class="caps"&gt;PC&lt;/span&gt; taking up too much time during training) or perhaps train using a minimally bounded set of features. I&amp;#8217;d recommend using &lt;a href="http://www.vision.caltech.edu/Image_Datasets/Caltech101/"&gt;Caltech101&lt;/a&gt;. Also check out Caltech256, &lt;span class="caps"&gt;CIFAR10&lt;/span&gt; datasets. They&amp;#8217;re good !! As in real&amp;nbsp;good. &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Secondly please set up either &lt;span class="caps"&gt;LIBSVM&lt;/span&gt; or &lt;span class="caps"&gt;VLFEAT&lt;/span&gt; ( for enhanced vision algos&amp;#8230; like sift) Library, or Any python machine learning toolkit that will provide basic &lt;span class="caps"&gt;SVM&lt;/span&gt; , Kmeans functionaliy. You can visit my previous post on &lt;a href="http://kushalvyas.github.io/setup_env.html"&gt;setting up environments&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Secondly please set up either &lt;span class="caps"&gt;LIBSVM&lt;/span&gt; , &lt;span class="caps"&gt;SKLEARN&lt;/span&gt;,  &lt;span class="caps"&gt;VLFEAT&lt;/span&gt; ( for enhanced vision algos&amp;#8230; like sift) Library, or Any python machine learning toolkit that will provide basic &lt;span class="caps"&gt;SVM&lt;/span&gt; , Kmeans functionaliy. You can visit my previous post on &lt;a href="http://kushalvyas.github.io/setup_env.html"&gt;setting up environments&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Third, please maintain a descent project directory structure. Well documented and well assembled as to where input , output and logs will be stored. This will help a lot for further projects and especially when it comes to making your code&amp;nbsp;modular.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;So lets&amp;#8217;&amp;nbsp;proceed. &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Steps in &lt;span class="caps"&gt;BOVW&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bag of Visual&amp;nbsp;Words&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is a supervised learning model. There will be a training set and a testing set.
+You can find my implementation on &lt;a href="https://github.com/kushalvyas/ObjectDetectionPython" target="_blank"&gt;Github&lt;/a&gt;. &lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Split the downloaded dataset into training and testing. You can use the 70-30 ratio or 80-20. But keep in mind, if the training data is not good , there &lt;span class="caps"&gt;WILL&lt;/span&gt; be discrepencies in the&amp;nbsp;output.&lt;/p&gt;
@@ -175,7 +161,7 @@ The Bag of Words, (which is a &lt;span class="caps"&gt;NLP&lt;/span&gt; model) c
 &lt;p&gt;One can ramify between Object recognition into 4 major subsets such as&amp;nbsp;:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Shape based approach&lt;/strong&gt; : We take the object and match the object with global or local features. Much more focus is given on global matching.
+&lt;p&gt;&lt;strong&gt;Template based approach&lt;/strong&gt; : We take the object and match the object with distribution pattern of intensities. It&amp;#8217;s quite exhaustive is not invariant to geometric transformations inside search image
     Eg: Template Matching . However, this isint much&amp;nbsp;sturdy.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -190,7 +176,7 @@ The Bag of Words, (which is a &lt;span class="caps"&gt;NLP&lt;/span&gt; model) c
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;I&amp;#8217;ll be going through a couple of common techniques. Firstly I&amp;#8217;ll introduce template matching and in the follow, using probabilistic recognition , then moving on to Machine learning applications such as using &lt;span class="caps"&gt;BOW&lt;/span&gt; models coupled with &lt;span class="caps"&gt;SVM&lt;/span&gt; , or feature extrapolation and recognition using neural&amp;nbsp;nets.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Shape based aproach&lt;/strong&gt; 
+&lt;p&gt;&lt;strong&gt;Template based aproach&lt;/strong&gt; 
 Well, there are  a few contentions i;d like to make when we use this approach. Shape based approach is not the key or the best method for recognition. But , in industry, all methods have their perks. Say we have an industry converyor belt that is suppossed to carry only boxes or T- Joints or anything so simply extrapolable and uniform that it is feasible to use shape matching rather than going for complex approaches like using nets, or using &lt;span class="caps"&gt;SVM&lt;/span&gt; along with bag of words. Then I&amp;#8217;d say, template matching or shape based matching is the best bet in terms of accuracy as well as&amp;nbsp;speed. &lt;/p&gt;
 &lt;p&gt;Lets dive a little deeper in the aforementioned topic.
 I&amp;#8217;ll be using template matching as an example to explain how Shape based matching works. Consider two images. The template image (T) and the actual image (I). We say that we want to find the location / occurence of template inside the actual&amp;nbsp;image.&lt;/p&gt;
