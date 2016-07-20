@@ -157,7 +157,7 @@ KMeans performs clustering. It is one of the widely used algorithms when it come
 </li>
 </ul>
 <p>So lets&#8217;&nbsp;proceed. </p>
-<h2><strong>Bag of Visual&nbsp;Words</strong></h2>
+<h1><strong>Bag of Visual&nbsp;Words</strong></h1>
 <p>This is a supervised learning model. There will be a training set and a testing set.
 You can find my implementation on <a href="https://github.com/kushalvyas/ObjectDetectionPython" target="_blank">Github</a>. </p>
 <ol>
@@ -269,16 +269,30 @@ You can find my implementation on <a href="https://github.com/kushalvyas/ObjectD
 
 <p><br></br></p>
 <p>I will reiterate the algorithm once again, and now step by step. With the input image list, firstly compute features. You&#8217;ll need objects of all helper classes. So please initialize them in your main module. Having detected and computed <span class="caps">SIFT</span> features, we need to process a&nbsp;vocabulary.</p>
-<h1><strong>How to develop visual vocabulary&nbsp;?</strong></h1>
+<h2><strong>How to develop visual vocabulary&nbsp;?</strong></h2>
+<p><span class="dquo">&#8220;</span>A picture is worth a thousand words &#8230;&nbsp;&#8220;</p>
 <p>Suppose I say, there is an image of a shoe. Humans tend to describe using normal english language words. A person will probably descibe a shoe as a shoe! A bit elaborated version may be , something having laces and small netted structures. Go a bit further, and it&#8217;ll seem to have small holes/circles, a few curved lines, a bunch of very striking corner points, a few patches having high contrast. Now you&#8217;re speaking in terms of a vision. One can dumb down the idea of descriptors / features in an image as striking/significant portions of the image that help describe it. Every image contains multiple features i.e. if we were to mathematically express an image in terms of features, we would say that an Image is a collection of features , where every feature may have a certain frequency of&nbsp;occurence.</p>
 <p>If it is so, how can we differentiate w.r.t features. !!! The answer comes from a much natural origin. Suppose a human was asked to differentiate between a shoe and a lipstick :P . He/she would start describing each of the aforementioned item. Shoe would have small circular pathes, long laces, much curved portions, etc. On the other hand, a lipstick is quite cylindrical and has a top buldge. So i can say , 
 <br></br>
-__ for a set of given features, there exists a weighted combination of features that describe an image individually<br />
+<strong> for a set of given features, there exists a weighted combination of features that describe an image individually </strong>
 <br></br>
 and that <br></br>
-Every feature present in an image, can be used as means for describing the same image __Why
+<strong>Every feature present in an image, can be used as means for describing the same image</strong>
 <br></br></p>
-<p>From the above two&nbsp;statements, </p>
+<p>From the above two statements, we define what a visual word is. Simply any thing that can be used to describe an image , we consider them as a visual word. Thus, our image becomes a combination of visual words (that are essentially features). And to make it more mathematical, we define this structure as a histogram. Essentially, histogram is just a measure of frequency occurence of a particular item, here in our case, we will be describing each image as a histogram of features. How many features out of the total vocabulary are required to make sense of what the computer is looking at&nbsp;. </p>
+<h3><strong>Linking vocabulary and clustering </strong>:</h3>
+<p>Using <span class="caps">SIFT</span>, we detect and compute features inside each image. <span class="caps">SIFT</span> returns us a <span class="math">\(m \times 128\)</span> dimension array, where m is the number of features extrapolated. Similarly, for multiple images, say 1000 images, we shall&nbsp;obtain </p>
+<div class="math">$$ \begin{bmatrix}
+features_0\\ 
+features_1\\ 
+    ....      \\ 
+    ....       \\
+    ....       \\
+features_{n}\\
+\end{bmatrix}
+$$</div>
+<div class="math">$$ where \  features_i \ \ is \ \ a  \ \ array \  of  \ \ dimension \ \  m \times 128 $$</div>
+<p>We now have a full stacked up list of what visual words are being used for every image. The next task is to group similar features. Think of it as synonyms &#8230;. Similar features can provide an approximate estimate as to what the image is, just as synonyms tend to express upon the gist of a sentence. Therefore when the machine is trained over several images, similar features that are able to describe similar portions of the image are grouped together to develop a vast vocabulary base. Each of these group collectively represent the a word and all groups in totality yields us the complete vocabulary generated from the training data. Hence there is a screaming need for clustering in the said&nbsp;process.</p>
 <p><strong> <span class="caps">IN</span> <span class="caps">PROGRESS</span> </strong></p>
 <p><strong> <span class="caps">COMING</span> <span class="caps">SOON</span></strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
