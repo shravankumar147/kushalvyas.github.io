@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy | Kushal Vyas's Blog</title><link href="http://kushalvyas.github.io/" rel="alternate"></link><link href="http://kushalvyas.github.io/feeds/all.atom.xml" rel="self"></link><id>http://kushalvyas.github.io/</id><updated>2016-07-13T20:40:00+05:30</updated><entry><title>Bag of Visual Words Model for Object Classification and Recognition</title><link href="http://kushalvyas.github.io/BOV.html" rel="alternate"></link><updated>2016-07-13T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:BOV.html</id><summary type="html">&lt;p&gt;Bag of Visual Words is an extention to the &lt;span class="caps"&gt;NLP&lt;/span&gt; algorithm Bag of Words used for image classification. Other than &lt;span class="caps"&gt;CNN&lt;/span&gt;, it is quite widely used. I sure want to tell that &lt;span class="caps"&gt;BOVW&lt;/span&gt; is one of the finest things I&amp;#8217;ve encountered in my vision explorations until&amp;nbsp;now.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy | Kushal Vyas's Blog</title><link href="http://kushalvyas.github.io/" rel="alternate"></link><link href="http://kushalvyas.github.io/feeds/all.atom.xml" rel="self"></link><id>http://kushalvyas.github.io/</id><updated>2016-07-13T20:40:00+05:30</updated><entry><title>Bag of Visual Words Model for Object Classification and Recognition (IN PROGRESS … )</title><link href="http://kushalvyas.github.io/BOV.html" rel="alternate"></link><updated>2016-07-13T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:BOV.html</id><summary type="html">&lt;p&gt;Bag of Visual Words is an extention to the &lt;span class="caps"&gt;NLP&lt;/span&gt; algorithm Bag of Words used for image classification. Other than &lt;span class="caps"&gt;CNN&lt;/span&gt;, it is quite widely used. I sure want to tell that &lt;span class="caps"&gt;BOVW&lt;/span&gt; is one of the finest things I&amp;#8217;ve encountered in my vision explorations until&amp;nbsp;now.&lt;/p&gt;
 &lt;p&gt;So what&amp;#8217;s the difference between Object Detection and Objet Recognition .. !! 
 Well, recognition simply involves stating whether an image contains a specific object or no. whereas detection also demands the position of the object inside the image. So say, there is an input image containing a cup, saucer, bottle, etc. The task is to be able to recognize which of the objects are contained in the&amp;nbsp;image.&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
@@ -13,14 +13,17 @@ Well, recognition simply involves stating whether an image contains a specific o
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;p&gt;To implement this, we shall be using : Opencv (3.x), sklearn (0.17), caltech101 dataset( trimmed&amp;nbsp;version)&lt;/p&gt;
 &lt;p&gt;Lets first understand what a feature is. One can say that a feauture is any discernable, and a significant point/group of points in an image. What to select as a feature depends on the application such as corner points, edges, blobs, &lt;span class="caps"&gt;DOG&lt;/span&gt; , etc. And to ease out our troubles, &lt;a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"&gt;David Lowe&lt;/a&gt; developed &lt;a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"&gt;&lt;span class="caps"&gt;SIFT&lt;/span&gt;&lt;/a&gt; : Scale Invariant Feature Transform. &lt;span class="caps"&gt;SIFT&lt;/span&gt; is extensively used today. We will be using &lt;span class="caps"&gt;SIFT&lt;/span&gt; as well. Please note, that algorithms such as &lt;span class="caps"&gt;SIFT&lt;/span&gt;, &lt;span class="caps"&gt;SURF&lt;/span&gt; which are patented are not available in the master version of Opencv-Itseez. To be able to use it, either install opencv_contrib or &lt;span class="caps"&gt;VLFEAT&lt;/span&gt; (You may want to check out my &lt;a href="http://kushalvyas.github.io/setup_env.html"&gt;previous post on environment settings &lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;Lets begin with a few introductory concepts required Bag of words. First is&amp;nbsp;, &lt;/p&gt;
+&lt;p&gt;Lets begin with a few introductory concepts required Bag of words. We shall cover 4 parts (so keep scrolling&amp;nbsp;!)&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Clustering : Lets say there is a bunch of Wrigleys Skittles. And someone is to tell you to group them according to their color. It&amp;#8217;s quite simple .. aint it! Simply seperate all red, blue, green, etc in different parts of the room. Here, we differentiated and seperated them on basis of &lt;strong&gt;color only&lt;/strong&gt;.&lt;br /&gt;
+&lt;li&gt;Clustering&lt;/li&gt;
+&lt;li&gt;Bag of Visual Words&amp;nbsp;Model&lt;/li&gt;
+&lt;li&gt;Generating&amp;nbsp;Vocabulary&lt;/li&gt;
+&lt;li&gt;Training and&amp;nbsp;testing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;/br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Clustering&lt;/strong&gt; : Lets say there is a bunch of Wrigleys Skittles. And someone is to tell you to group them according to their color. It&amp;#8217;s quite simple .. aint it! Simply seperate all red, blue, green, etc in different parts of the room. Here, we differentiated and seperated them on basis of &lt;strong&gt;color only&lt;/strong&gt;.&lt;br /&gt;
 So moving on to a more complex situation that would give a much profound meaning to clustering. Suppose there is a room full of utilities, be it accesories, clothing, utensils, electronics, etc. Now, if someone is told to seperate out into well formed groups of similar items, one would essentially be performing&amp;nbsp;clustering. &lt;/p&gt;
 &lt;p&gt;So yes, clustering can be said as the grouping a set of objects in such a way that objects in the same group are much similar, than to those in other&amp;nbsp;groups/sets&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
 &lt;p&gt;Moving on, lets&amp;#8217; decide as to how we perform clustering. The selection of clustering algorithm depends more on what kind of similarity model is to be chosen. There are cases wherein, the plain&amp;#8217;ol clustering impression that everyone so simply elucidates may not be the right choice. For example, there exists various models, such as centroid oriented - Kmeans, or Distribution based models - that involve clustering for statistical data; such places require Density based clustering (&lt;span class="caps"&gt;DBSCAN&lt;/span&gt;) ,&amp;nbsp;etc. &lt;/p&gt;
 &lt;p&gt;Beginning with &lt;strong&gt;KMeans clustering&lt;/strong&gt;. Suppose there are X objects, that are to be divided into K clusters. The input can be a set of features, &lt;span class="math"&gt;\(X = \{ x_1, x_2, ..., x_n \}\)&lt;/span&gt;. The goal is basically to minimize the distance between each point in the scatter cloud and the assigned&amp;nbsp;centroids. &lt;/p&gt;
 &lt;div class="math"&gt;$$ {\underset {\mathbf {S} }{\operatorname {arg\,min} }}\sum _{i=1}^{k}\sum _{\mathbf {x} \in S_{i}}\left\|\mathbf {x} -{\boldsymbol {\mu }}_{i}\right\|^{2}
@@ -82,7 +85,7 @@ KMeans performs clustering. It is one of the widely used algorithms when it come
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;So lets&amp;#8217;&amp;nbsp;proceed. &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Bag of Visual&amp;nbsp;Words&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong&gt;Bag of Visual&amp;nbsp;Words&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;This is a supervised learning model. There will be a training set and a testing set.
 You can find my implementation on &lt;a href="https://github.com/kushalvyas/ObjectDetectionPython" target="_blank"&gt;Github&lt;/a&gt;. &lt;/p&gt;
 &lt;ol&gt;
@@ -99,161 +102,111 @@ You can find my implementation on &lt;a href="https://github.com/kushalvyas/Obje
 &lt;p&gt;The final step is codebook generation. A codebook can be thought of as a dictionary that registers corresponding mappings between features and their definition in the object. We need to define set of words (essentially the features marked by words) that provides an analogous relation of an object ( being trained) w.r.t. a set of&amp;nbsp;features. &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="gist"&gt;
-    &lt;script src='https://gist.github.com/4e5044cc533096f45323de43b85000be.js'&gt;&lt;/script&gt;
-    &lt;noscript&gt;
-        &lt;pre&gt;&lt;code&gt;import cv2
-import numpy as np 
-from glob import glob 
-import argparse
-from helpers import *
+&lt;!-- 
+[gist:id=4e5044cc533096f45323de43b85000be]
+ --&gt;
 
-class BOV:
-    def __init__(self, no_clusters):
-        self.no_clusters = no_clusters
-        self.train_path = None
-        self.test_path = None
-        self.im_helper = ImageHelpers()
-        self.bov_helper = BOVHelpers(no_clusters)
-        self.file_helper = FileHelpers()
-        self.images = None
-        self.trainImageCount = 0
-        self.train_labels = np.array([])
-        self.name_dict = {}
-        self.descriptor_list = []
+&lt;p&gt;Project Architecture&amp;nbsp;: &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="nb"&gt;dir&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+    &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;images&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+            &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;test&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;
+                &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;obj1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+                &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;obj2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
 
-    def trainModel(self):
-        """
-        This method contains the entire module 
-        required for training the bag of visual words model
+            &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;train&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;
+                &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;obj1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+                &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;obj2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
 
-        Use of helper functions will be extensive.
-
-        """
+    &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;helpers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+    &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;Bag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
 
 
-
-        # read file. prepare file lists.
-        self.images, self.trainImageCount = self.file_helper.getFiles(self.train_path)
-        # extract SIFT Features from each image
-        label_count = 0 
-        for word, imlist in self.images.iteritems():
-            self.name_dict[str(label_count)] = word
-            print "Computing Features for ", word
-            for im in imlist:
-                # cv2.imshow("im", im)
-                # cv2.waitKey()
-                self.train_labels = np.append(self.train_labels, label_count)
-                kp, des = self.im_helper.features(im)
-                self.descriptor_list.append(des)
-
-            label_count += 1
+&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;Bag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;train_set&lt;/span&gt; &lt;span class="n"&gt;images&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;train&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;test_set&lt;/span&gt; &lt;span class="n"&gt;images&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;test&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 
-        # perform clustering
-        bov_descriptor_stack = self.bov_helper.formatND(self.descriptor_list)
-        self.bov_helper.cluster()
-        self.bov_helper.developVocabulary(n_images = self.trainImageCount, descriptor_list=self.descriptor_list)
+&lt;p&gt;&lt;span class="math"&gt;\(images\)&lt;/span&gt; directory contains testing and training images. Provide the path to test and train images to &lt;span class="math"&gt;\(Bag.py\)&lt;/span&gt;&amp;nbsp;file.&lt;/p&gt;
+&lt;p&gt;We shall go through each module, step by step. &lt;code&gt;Bag.py&lt;/code&gt; contains the main. We have the methods &lt;code&gt;trainModel&lt;/code&gt; and &lt;code&gt;testModel&lt;/code&gt;. &lt;code&gt;Heplers.py&lt;/code&gt; contains various helper functionalities. It contains Imagehelpers, FileHelper, BOVhelpers. Imagehelpers contains colorscheme conversion, feature detection. FileHelper returns a dictionary of each object-name with a corresponding list of all images. It also returns total image count. (required&amp;nbsp;later)&lt;/p&gt;
+&lt;p&gt;FileHelper will return the training set. It returns a dictionary with &lt;code&gt;key = object_name&lt;/code&gt; and &lt;code&gt;value = list of images&lt;/code&gt; and total number of&amp;nbsp;images.&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;FileHelper&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;getFiles&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    - returns  a dictionary of all files &lt;/span&gt;
+&lt;span class="sd"&gt;    having key =&amp;gt; value as  objectname =&amp;gt; image path&lt;/span&gt;
+&lt;span class="sd"&gt;    - returns total number of files.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;imlist&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="n"&gt;count&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; #### Reading image category &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; ##### &amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;imlist&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;imagefile&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Reading file &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;imagefile&lt;/span&gt;
+            &lt;span class="n"&gt;im&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;imread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;imagefile&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;imlist&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;im&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;count&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
 
-        # show vocabulary trained
-        self.bov_helper.plotHist()
- 
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;imlist&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
-        self.bov_helper.standardize()
-        self.bov_helper.train(self.train_labels)
+&lt;p&gt;ImageHelpers&amp;#8217;s primary function is to provide with &lt;span class="caps"&gt;SIFT&lt;/span&gt; features present in an image. We require these image features to develop our vocabulary.(I&amp;#8217;ll explain what it means in the coming parts ..&amp;nbsp;). &lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ImageHelpers&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sift_object&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xfeatures2d&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SIFT_create&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;gray&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;gray&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cvtColor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;COLOR_BGR2GRAY&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;gray&lt;/span&gt;
 
-    def recognize(self,test_img,    test_image_path=None):
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;features&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;keypoints&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;descriptors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sift_object&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;detectAndCompute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;keypoints&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;descriptors&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
-        """ 
-        This method recognizes a single image 
-        It can be utilized individually as well.
-
-
-        """
-
-        kp, des = self.im_helper.features(test_img)
-
-        # generate vocab for test image
-        vocab = np.array( [ 0 for i in range(self.no_clusters)])
-        # locate nearest clusters for each of 
-        # the visual word (feature) present in the image
-        
-        # test_ret =&lt;&gt; return of kmeans nearest clusters for N features
-        test_ret = self.bov_helper.kmeans_obj.predict(des)
-
-        for each in test_ret:
-            vocab[each] += 1
-
-        # Scale the features
-        vocab = self.bov_helper.scale.transform(vocab)
-
-        # predict the class of the image
-        lb = self.bov_helper.clf.predict(vocab)
-        # print "Image belongs to class : ", self.name_dict[str(int(lb[0]))]
-        return lb
-
-
-
-    def testModel(self):
-        """ 
-        This method is to test the trained classifier
-
-        read all images from testing path 
-        use BOVHelpers.predict() function to obtain classes of each image
-
-        """
-
-        self.testImages, self.testImageCount = self.file_helper.getFiles(self.test_path)
-
-        predictions = []
-
-        for word, imlist in self.testImages.iteritems():
-            print "processing " ,word
-            for im in imlist:
-                cl = self.recognize(im)
-                predictions.append({
-                    'image':im,
-                    'class':cl,
-                    'object_name':self.name_dict[str(int(cl[0]))]
-                    })
-
-        print predictions
-        for each in predictions:
-            cv2.imshow(each['object_name'], each['image'])
-            cv2.waitKey()
-            cv2.destroyWindow(each['object_name'])
-
-
-    def print_vars(self):
-        pass
-
-
-if __name__ == '__main__':
-
-    # parse cmd args
-    parser = argparse.ArgumentParser(
-            description=" Bag of visual words example"
-        )
-    parser.add_argument('--train_path', action="store", dest="train_path", required=True)
-    parser.add_argument('--test_path', action="store", dest="test_path", required=True)
-
-    args =  vars(parser.parse_args())
-    # print args
-
-    
-    bov = BOV(no_clusters=50)
-
-    # set training paths
-    bov.train_path = args['train_path'] 
-    # set testing paths
-    bov.test_path = args['test_path'] 
-    # train the model
-    bov.trainModel()
-    # test model
-    # bov.testModel()&lt;/code&gt;&lt;/pre&gt;
-    &lt;/noscript&gt;
-&lt;/div&gt;
+&lt;p&gt;&lt;br&gt;&lt;/br&gt;&lt;/p&gt;
+&lt;p&gt;I will reiterate the algorithm once again, and now step by step. With the input image list, firstly compute features. You&amp;#8217;ll need objects of all helper classes. So please initialize them in your main module. Having detected and computed &lt;span class="caps"&gt;SIFT&lt;/span&gt; features, we need to process a&amp;nbsp;vocabulary.&lt;/p&gt;
+&lt;h1&gt;&lt;strong&gt;How to develop visual vocabulary&amp;nbsp;?&lt;/strong&gt;&lt;/h1&gt;
+&lt;p&gt;Suppose I say, there is an image of a shoe. Humans tend to describe using normal english language words. A person will probably descibe a shoe as a shoe! A bit elaborated version may be , something having laces and small netted structures. Go a bit further, and it&amp;#8217;ll seem to have small holes/circles, a few curved lines, a bunch of very striking corner points, a few patches having high contrast. Now you&amp;#8217;re speaking in terms of a vision. One can dumb down the idea of descriptors / features in an image as striking/significant portions of the image that help describe it. Every image contains multiple features i.e. if we were to mathematically express an image in terms of features, we would say that an Image is a collection of features , where every feature may have a certain frequency of&amp;nbsp;occurence.&lt;/p&gt;
+&lt;p&gt;If it is so, how can we differentiate w.r.t features. !!! The answer comes from a much natural origin. Suppose a human was asked to differentiate between a shoe and a lipstick :P . He/she would start describing each of the aforementioned item. Shoe would have small circular pathes, long laces, much curved portions, etc. On the other hand, a lipstick is quite cylindrical and has a top buldge. So i can say , 
+&lt;br&gt;&lt;/br&gt;
+__ for a set of given features, there exists a weighted combination of features that describe an image individually&lt;br /&gt;
+&lt;br&gt;&lt;/br&gt;
+and that &lt;br&gt;&lt;/br&gt;
+Every feature present in an image, can be used as means for describing the same image __Why
+&lt;br&gt;&lt;/br&gt;&lt;/p&gt;
+&lt;p&gt;From the above two&amp;nbsp;statements, &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt; &lt;span class="caps"&gt;IN&lt;/span&gt; &lt;span class="caps"&gt;PROGRESS&lt;/span&gt; &lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt; &lt;span class="caps"&gt;COMING&lt;/span&gt; &lt;span class="caps"&gt;SOON&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
