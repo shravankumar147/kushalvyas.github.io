@@ -1017,7 +1017,7 @@ you can create a&amp;nbsp;class.&lt;/p&gt;
 &lt;p&gt;In this blog, I&amp;#8217;ll be discussing various Image Processing and Computer vision fundamentals and posting small implementable&amp;nbsp;snippets.&lt;/p&gt;</summary><category term="CV"></category></entry><entry><title>'The Social Network' where it all started</title><link href="http://kushalvyas.github.io/utils.html" rel="alternate"></link><updated>2016-03-24T10:20:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-03-24:utils.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;Disclaimer : &lt;/em&gt;If ur a windows user &amp;#8230; forgive&amp;nbsp;me&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Moving on, i think every person starting off with linux, must know a few things ..
 Specially, if you,ve just watched &lt;em&gt;&lt;a href="http://www.imdb.com/title/tt1285016/"&gt;The Social Network&lt;/a&gt;&lt;/em&gt; and you&amp;#8217;ve seen  Jesse Eisenberg hacking away at his&amp;nbsp;screen&amp;#8230; &lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;img alt="gif" src="http://45.media.tumblr.com/tumblr_m24imcJnkB1qjemo2o1_500.gif" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="gif" src="http://kushalvyas.github.io/images/mkz.gif" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;You&amp;#8217;re probably wondering what is &lt;em&gt;wget&lt;/em&gt;, &lt;em&gt;emacs&lt;/em&gt;, &lt;em&gt;apache&lt;/em&gt; and much more. If not, please rewatch the movie with&amp;nbsp;subtitiles.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Wget&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.gnu.org/software/wget/" target="_blank"&gt;Wget&lt;/a&gt; is a basic downloading utility, actually calling it basic would be an understatement
@@ -1048,7 +1048,8 @@ more details, check out this &lt;a href="http://www.linuxjournal.com/content/dow
 &lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Editor_war"&gt;Emacs or &lt;span class="caps"&gt;VI&lt;/span&gt;&lt;/a&gt; , you&amp;#8217;d better end up choosing one and not telling the other side. People will go to war with you, if you say emacs is better than &lt;span class="caps"&gt;VI&lt;/span&gt; or vice versa .
 &lt;center&gt;&lt;img alt="evn" src="http://kalyanvarma.net/images/struggle1.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;And the my favourite .. click to play
-&lt;a href="https://www.youtube.com/watch?v=R0Kzgno5wxA" target="_blank" title="Should I Learn Emacs or Vi?"&gt;&lt;img alt="Should I Learn Emacs or Vi?" src="http://img.youtube.com/vi/R0Kzgno5wxA/0.jpg" /&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;center&gt;&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/R0Kzgno5wxA" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;/center&gt;&lt;!-- 
+&lt;a href="https://www.youtube.com/watch?v=R0Kzgno5wxA" title="Should I Learn Emacs or Vi?"&gt;klzzwxh:0016&lt;/a&gt;{:target='_blank'} --&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Learning either is useful. These are highly customizable editors. You will absolutely stop using other tools once u get accustomed to either of these. Read along &lt;a href="http://unix.stackexchange.com/questions/986/what-are-the-pros-and-cons-of-vim-and-emacs" target="_blank"&gt;this &lt;span class="caps"&gt;SO&lt;/span&gt; post&lt;/a&gt; to uncover&amp;nbsp;more.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;GREP&lt;/span&gt;&amp;nbsp;:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="caps"&gt;GREP&lt;/span&gt;, is by far my favourite utility. An amazing tools to perform searches. It uses a regular expression pattern matcher, so it&amp;#8217;s quite easy to detect&amp;nbsp;substrings.&lt;/p&gt;
