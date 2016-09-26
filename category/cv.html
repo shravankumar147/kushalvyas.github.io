@@ -3,6 +3,10 @@
 <head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="http://kushalvyas.github.io/theme/css/materialize.min.css">
+        <!-- <link rel="stylesheet" type="text/css" href=""> -->
+        <script src="http://kushalvyas.github.io/theme/js/jquery-1.11.3.min.js"></script>
+        <script src="http://kushalvyas.github.io/theme/js/materialize.min.js"></script>
         <link rel="stylesheet" href="http://kushalvyas.github.io/theme/css/foundation.min.css" media="all">
         <script type="text/javascript" src="http://kushalvyas.github.io/theme/js/modernizr.js"></script>
         <link href='https://fonts.googleapis.com/css?family=Exo+2:400,300,700,300italic,400italic,700italic,900,900italic' rel='stylesheet' type='text/css'>
@@ -21,6 +25,8 @@
   
 
         <script src="//load.sumome.com/" data-sumo-site-id="cecf6965e36602158241ee45155d77c8c02f27706e5178b61597811ab112b3a8" async="async"></script>   
+
+       
 </head>
 <body>
     <div class="pages">
@@ -28,7 +34,7 @@
             <li class="home"><a href="http://kushalvyas.github.io/index.html">Home</a></li>
             <li ><a href="http://kushalvyas.github.io/pages/about-me.html">About&nbsp;me</a></li>
             <li ><a href="http://kushalvyas.github.io/pages/technical.html">Computer&nbsp;Vision</a></li>
-            <li ><a href="http://kushalvyas.github.io/pages/dev, technical.html">Projects</a></li>
+            <li ><a href="http://kushalvyas.github.io/pages/projects.html">Projects</a></li>
             <li ><a href="http://kushalvyas.github.io/pages/Music.html">Music</a></li>
 
             <li style="float :right;" class=""><a href="http://www.github.com/kushalvyas" target="_blank"><i class="fa fa-github fa-2x" aria-hidden='true'></i>&nbsp;&nbsp;</a></li>
@@ -78,10 +84,10 @@
 </blocks>
 
             </div>
-
-            <div class="large-2 aside column" >
-<!--                 <h3><a href="http://kushalvyas.github.io/subscribe.html" style="color: #A01;">SUBSCRIBE FOR MORE !</a></h3><br>
- -->                <h3>Trending</h3>
+         
+            <div class="large-2 aside column" id="SIDEID">
+         
+                <!-- <h3>Trending</h3>
                 <ul>
 
                     <li><a href="http://kushalvyas.github.io/BOV.html#BOV">Bag of Visual Words</a></li>
@@ -93,8 +99,34 @@
                 <h3>Coming Soon</h3>
                 <ul>
                         <li><a href="#" onclick="executeComingSoonPopUp();">Neural Style Evolution !</a></li>
-                </ul>
+                </ul> -->
             </div>
+            <script>
+                function load_sideID(){
+                    var curr_url=  document.URL;
+                    if(curr_url.indexOf('projects')>0){
+                        console.log("on project page");
+                    }else{
+                        console.log("not on project page");
+                        var side= $("#SIDEID");
+                        var data = "<h3>Trending</h3>";
+                        data += "<ul>";
+                           data += '<li><a href="http://kushalvyas.github.io/BOV.html#BOV">Bag of Visual Words</a></li>';
+                           data += '<li><a href="http://kushalvyas.github.io/gen_8Q.html">8 Queens GA</a></li>';
+                           data += '<li><a href="http://kushalvyas.github.io/wiki_lookup.html">Wiki Lookup</a></li>';
+                        data += "</ul>";
+
+                        data +="<h3>Coming Soon</h3>";
+                        data+="<ul>";
+                            data+='<li><a href="">Neural Style Evolution !</a></li>';
+                        data += '</ul>';
+                        side.append(data);
+                    }
+                }
+                load_sideID();
+
+            </script>
+          
          </div>
     </div>
 </div>
