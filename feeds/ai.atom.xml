@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog</title><link href="http://kushalvyas.github.io/" rel="alternate"></link><link href="http://kushalvyas.github.io/feeds/ai.atom.xml" rel="self"></link><id>http://kushalvyas.github.io/</id><updated>2016-08-18T18:20:00+05:30</updated><entry><title>Solving 8 Queens using Genetic Algorithms - Evolution</title><link href="http://kushalvyas.github.io/gen_8Q.html" rel="alternate"></link><updated>2016-08-18T18:20:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-08-18:gen_8Q.html</id><summary type="html">&lt;h1&gt;The 8 Queens Problem : An&amp;nbsp;Introduction&lt;/h1&gt;
-&lt;p&gt;8 queens is a classic computer science problem. To find possible arrangements of 8 queens on a standard $8$ x $8$ chessboard such that no queens every end up in an attacking configuration. Now, if one knows the basics of chess, one can say that a queen can travel either horizontally, vertically, or diagonally. Hence, for 2 or more queens to be in an attacking state, they have to lie either horizontally or vertically or diagonally in-line with the other queen. The figure on the left illustrates that what all are the attacking positions with respect to a queen. As seen, the attacking positions are those where in the queen can move either horizontally, vertically, or diagonally along the chessboard.&amp;#8221; $&lt;span class="caps"&gt;OK&lt;/span&gt;$ &amp;#8221; resembles the chessboard square which is considered a safe and non-attacking position. Whereas the one marked with an &amp;#8221; $X$ &amp;#8221; is an attacking placement. The figure on right, shows one of the possible arrangements that serve as a solution to the 8 queens&amp;nbsp;problem.&lt;/p&gt;
+&lt;p&gt;8 queens is a classic computer science problem. To find possible arrangements of 8 queens on a standard &lt;span class="math"&gt;\(8\)&lt;/span&gt; x &lt;span class="math"&gt;\(8\)&lt;/span&gt; chessboard such that no queens every end up in an attacking configuration. Now, if one knows the basics of chess, one can say that a queen can travel either horizontally, vertically, or diagonally. Hence, for 2 or more queens to be in an attacking state, they have to lie either horizontally or vertically or diagonally in-line with the other queen. The figure on the left illustrates that what all are the attacking positions with respect to a queen. As seen, the attacking positions are those where in the queen can move either horizontally, vertically, or diagonally along the chessboard.&amp;#8221; &lt;span class="math"&gt;\(OK\)&lt;/span&gt; &amp;#8221; resembles the chessboard square which is considered a safe and non-attacking position. Whereas the one marked with an &amp;#8221; &lt;span class="math"&gt;\(X\)&lt;/span&gt; &amp;#8221; is an attacking placement. The figure on right, shows one of the possible arrangements that serve as a solution to the 8 queens&amp;nbsp;problem.&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;&lt;img alt="attacking_queen" src="http://kushalvyas.github.io/images/queen_attacking.png" /&gt; &amp;nbsp; &amp;nbsp;
 &lt;img alt="solution_queen" src="http://kushalvyas.github.io/images/solution.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;i&gt;Images taken from chegg.com and indiamedic&lt;/i&gt;&lt;/center&gt;&lt;/p&gt;
@@ -25,7 +25,8 @@ Process of meiosis.
 Similarly, many parents create multiple offspring, each offspring containing their traits. This set of offspring can be termed as a generation. We call it first generation. Again, when these offsprings (children) become parent , and produce their own offsprings, it gives rise to generation 2. Hence, when the process continues to go on, every generation can be said to have characteristics of the previous generation. Since the previous generation has characteristics of its&amp;#8217; previous generation, we can say that any randomly picked generation will have characteristics from all the previous&amp;nbsp;generations.&lt;/p&gt;
 &lt;h1&gt;The &lt;span class="caps"&gt;CS&lt;/span&gt; Stuff&amp;nbsp;!!&lt;/h1&gt;
 &lt;p&gt;&lt;em&gt;Now where do we apply all this biology ?&lt;/em&gt; Just as we have an offspring which is equivalent to a weighted addition of the characteristics of the two parents, similarly, a chessboard with a certain arrangement of queens can be said to be an offspring of 2 parent chessboards that may have similar arrangements. For example, suppose we have 2 parent chessboards (C1 and C2). And on reproduction, C1 and C2 produce the offspring chessboard &lt;span class="caps"&gt;OC&lt;/span&gt;. Based on the aforemention biological evidence, I can say&amp;nbsp;that &lt;/p&gt;
-&lt;p&gt;$$ &lt;span class="caps"&gt;OC&lt;/span&gt; = f(C1, C2) $$ where $ f( )$ is simply a function that combines random characteristics of C1 with the remaining characteristics of&amp;nbsp;C2.&lt;/p&gt;
+&lt;div class="math"&gt;$$ OC = f(C1, C2) $$&lt;/div&gt;
+&lt;p&gt; where &lt;span class="math"&gt;\( f( )\)&lt;/span&gt; is simply a function that combines random characteristics of C1 with the remaining characteristics of&amp;nbsp;C2.&lt;/p&gt;
 &lt;p&gt;So any chessboard arrangement of 8 queens can be computed as selections of certain arrangements from C1 and C2. Thereby, asserting the fact that I am creating &lt;span class="caps"&gt;OC&lt;/span&gt; through random probabilistic selection and not any pre-processed criteria. This is strictly following the model prescribed by nature. By keeping everything random, we are essentially replicating the random &amp;#8220;crossing over of genes&amp;#8221; that occurs in&amp;nbsp;cells.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Core&amp;nbsp;Working: &lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -66,8 +67,8 @@ the children&amp;nbsp;computed.&lt;/li&gt;
 Consider this. Just as every human being can be defined by the presence of characteristics, any solution to the 8 queens problem can be defined by the placement of the queens in non attacking arrangements. Hence, each parent is a chessboard having some arbitary arrangement of the queens. Moving on, every individual can be regarded as a strong offspring or a weak one. We measure stregth of a human offspring through physical strength, immunity, etc. Whereas in the case of 8 queens, the fitness of a board arrangement can be considered as the number of clashes that take place between the queens. So the measure of &lt;strong&gt;fitness of any individual (chessboard arrangement)&lt;/strong&gt; is attributed to &lt;strong&gt;number of clashes amongst attacking positions of queens&lt;/strong&gt;.  &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Fitness fn : &lt;/strong&gt;
 I said that the fitness fn is proportional to the number of clashes amongst the queens. If seen, there are 28 clashes possible in an 8 x 8 chessboard. Therefore, if an individual has high fitness, I can say that it will have lower number of&amp;nbsp;clashes.&lt;/p&gt;
-&lt;p&gt;$$ \text{Let clashes} = \text{number of clashing queens}$$
-$$ \therefore fitness = 28 - clashes&amp;nbsp;$$&lt;/p&gt;
+&lt;div class="math"&gt;$$ \text{Let clashes} = \text{number of clashing queens}$$&lt;/div&gt;
+&lt;div class="math"&gt;$$ \therefore fitness = 28 - clashes $$&lt;/div&gt;
 &lt;p&gt;Then, any individual with the maximum fitness will be having least number of&amp;nbsp;clashes.&lt;/p&gt;
 &lt;h1&gt;Implementation&amp;nbsp;:&lt;/h1&gt;
 &lt;p&gt;You can checkout my implementation &lt;a href="https://gist.github.com/kushalvyas/7f777c24880c8d1dee744ecb8125e50f"&gt;here&lt;/a&gt;&lt;/p&gt;
@@ -80,7 +81,30 @@ $$ \therefore fitness = 28 - clashes&amp;nbsp;$$&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;[gist:id=ac3593026e0a431bbc47aaf4e025fe67]&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/ac3593026e0a431bbc47aaf4e025fe67.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;def generateChromosome():
+	# randomly generates a sequence of board states.
+	global nQueens
+	init_distribution = np.arange(nQueens)
+	np.random.shuffle(init_distribution)
+	return init_distribution
+
+def generatePopulation(population_size = 100):
+	global POPULATION
+
+	POPULATION = population_size
+
+	population = [BoardPosition() for i in range(population_size)]
+	for i in range(population_size):
+		population[i].setSequence(generateChromosome())
+		population[i].setFitness(fitness(population[i].sequence))
+
+	return population
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
 &lt;p&gt;As seen, each board position contains a sequence : the arrangement of queens on the board. A fitness value ( as discussed above) and a survival value. We need a survival value simply because evolutionary primitives say so. According to Darwin&amp;#8217;s theory, &amp;#8216;Survival of the fittest&amp;#8217;, each parent (board position) has to be able to survive. This survival influences the ability of the parent to&amp;nbsp;reproduce.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt; Determining&amp;nbsp;Fitness &lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Secondly, we define a fitness function. As discussed above, we shall characterize fitness as a maximum value. Even though less number of clashes mean higher fitness , for implementation purposes, we consider maximum values of fitness. This can be done becuase we subtract number of clashes from&amp;nbsp;28.&lt;/p&gt;
@@ -91,8 +115,8 @@ $$ \therefore fitness = 28 - clashes&amp;nbsp;$$&lt;/p&gt;
 &lt;li&gt;Diagonal&amp;nbsp;clashes&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The ideal case can yield upton 28 arrangements of non attacking&amp;nbsp;pairs.&lt;/p&gt;
-&lt;p&gt;Therefore max fitness = $&amp;nbsp;28.$&lt;/p&gt;
-&lt;p&gt;Hence fitness val returned will be $ 28 - \text{&lt;number of clashes&gt;}$ &lt;/p&gt;
+&lt;p&gt;Therefore max fitness = &lt;span class="math"&gt;\(&amp;nbsp;28.\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Hence fitness val returned will be &lt;span class="math"&gt;\( 28 - \text{&amp;lt;number of&amp;nbsp;clashes&amp;gt;}\)&lt;/span&gt; &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;clashes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="c"&gt;# calculate row and column clashes&lt;/span&gt;
 &lt;span class="c"&gt;# just subtract the unique length of array from total length of array&lt;/span&gt;
@@ -115,8 +139,10 @@ $$ \therefore fitness = 28 - clashes&amp;nbsp;$$&lt;/p&gt;
 
 
 &lt;p&gt;&lt;strong&gt; Determining Survival of&amp;nbsp;individual &lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Having demostrated how to calculate the fitness value, we can now move on to defining a survival function. A survival function will determine as to how able is a particular parent to survive and produce a healthy offspring. If out of 1000 people, the probability of any random person getting picked is $ \frac{1}{1000}$, similarly, the survival function can be written as a normalized probability of a individual getting selected based upon the fitness&amp;nbsp;:&lt;/p&gt;
-&lt;p&gt;&lt;center&gt;$$ \text{Survival for} i^{th} \text{individual} = \frac{f_i}{\sum_{j=1}^{j=populationSize} f_j } $$&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Having demostrated how to calculate the fitness value, we can now move on to defining a survival function. A survival function will determine as to how able is a particular parent to survive and produce a healthy offspring. If out of 1000 people, the probability of any random person getting picked is &lt;span class="math"&gt;\( \frac{1}{1000}\)&lt;/span&gt;, similarly, the survival function can be written as a normalized probability of a individual getting selected based upon the fitness&amp;nbsp;:&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;/p&gt;
+&lt;div class="math"&gt;$$ \text{Survival for} i^{th} \text{individual} = \frac{f_i}{\sum_{j=1}^{j=populationSize} f_j } $$&lt;/div&gt;
+&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt; Selection of Parents  &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt;&amp;nbsp;Crossover&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Parent selection is quite straightforward. Simply selecting 2 random - non equal parent will do the trick, but is very inaccurate and time costing. Hence, by using the survival function, elimination of weaker parent can be performed. Eventually, the parents left will be ones that are more likely to produce a fit offspring. Analogous to biology, two dominant traits will more likely produce a dominant trait cause it won&amp;#8217;t matter which of the dominant trait is&amp;nbsp;selected. &lt;/p&gt;
 &lt;p&gt;Once two parents are selected, the proceeding part is crossover. Crossover involves selecting a part of parent 1 and concatenating it with parent 2. Why &amp;#8230; Because our chromosomes do so. This selective addition of chessboard board sequences will create an offspring that may have one of these three&amp;nbsp;characteristics&lt;/p&gt;
@@ -134,15 +160,72 @@ Biologically and statistically, mutation is continously occuring at very low fre
 &lt;p&gt;The above illustrates the entire flow from initial population to fitness
 function calculation, to selection to cross-over and finally mutation. &lt;strong&gt;Note : Mutation may or may not provide with the&amp;nbsp;solution.&lt;/strong&gt;&lt;/p&gt;
 &lt;h1&gt;How to interpret input and output&amp;nbsp;sequences:&lt;/h1&gt;
-&lt;p&gt;Each row of the chess row is indexed from $0 \text{-&amp;gt;} 7$ . The sequence $[\text{ a b c d  &amp;#8230;. }]$ means that in $0^{\text{th}}$ column, $a^{\text{th}}$ row,  the queen is present and so on. The following are example sequences that are (not) a solution to the&amp;nbsp;problem.&lt;/p&gt;
+&lt;p&gt;Each row of the chess row is indexed from &lt;span class="math"&gt;\(0 \text{-&amp;gt;} 7\)&lt;/span&gt; . The sequence &lt;span class="math"&gt;\([\text{ a b c d  .... }]\)&lt;/span&gt; means that in &lt;span class="math"&gt;\(0^{\text{th}}\)&lt;/span&gt; column, &lt;span class="math"&gt;\(a^{\text{th}}\)&lt;/span&gt; row,  the queen is present and so on. The following are example sequences that are (not) a solution to the&amp;nbsp;problem.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;$[\text{1 1 1 1 1 1 1 1}]$ : This is certainly not a solution. All queens lie in the $1^{\text{st}}$ row of the board. Hence all are&amp;nbsp;conflicting&lt;/li&gt;
-&lt;li&gt;$[\text{1 1 0 4 2 1 2 4}]$ : Similarly, thi aint a solution&amp;nbsp;either.&lt;/li&gt;
-&lt;li&gt;$[\text{1 6 2 5 7 4 0 3}]$ : This satisfies 8 queen problem and hence a&amp;nbsp;solution.&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\([\text{1 1 1 1 1 1 1 1}]\)&lt;/span&gt; : This is certainly not a solution. All queens lie in the &lt;span class="math"&gt;\(1^{\text{st}}\)&lt;/span&gt; row of the board. Hence all are&amp;nbsp;conflicting&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\([\text{1 1 0 4 2 1 2 4}]\)&lt;/span&gt; : Similarly, thi aint a solution&amp;nbsp;either.&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\([\text{1 6 2 5 7 4 0 3}]\)&lt;/span&gt; : This satisfies 8 queen problem and hence a&amp;nbsp;solution.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1&gt;Output and termination criteria&amp;nbsp;:&lt;/h1&gt;
 &lt;p&gt;Well, it seems that such an algorithm will keep producing offsprings and again their offsprings. When to stop. In my implementation , I&amp;#8217;ve kept a limit of iteration. This is just for purposes of conviniece. However, at anytime, the most optimal solution can be described as the &lt;strong&gt;most fit board position&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
     &lt;img alt="im" src="http://kushalvyas.github.io/images/op8q.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;You can check out the &lt;a href="https://gist.github.com/kushalvyas/7f777c24880c8d1dee744ecb8125e50f"&gt;code&lt;/a&gt; at &lt;a href="https://www.github.com/kushalvyas/"&gt;Github&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;</summary><category term="AI"></category><category term="Py"></category></entry></feed>
+&lt;p&gt;&lt;strong&gt;You can check out the &lt;a href="https://gist.github.com/kushalvyas/7f777c24880c8d1dee744ecb8125e50f"&gt;code&lt;/a&gt; at &lt;a href="https://www.github.com/kushalvyas/"&gt;Github&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' &amp;&amp; location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="AI"></category><category term="Py"></category></entry></feed>

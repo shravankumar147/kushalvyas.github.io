@@ -79,8 +79,8 @@ Also, to test, I will be using images from &lt;a href="http://study.marearts.com
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Homography&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Okay, so assume you&amp;#8217;re looking at a scenery. You will be having a field of view and that field of view is of what you want to make a panorama. You can rotate your head and cover a big area. But while you are looking straight, looking directly perpendicularly at a sub-scene, the remaining part of the scenery appears slightly inclined or slightly narrowed out. This is due to simple physics. Since you are facing in one direction, the things to your extreme periphery appears unclear, reduced in dimension and not necessarily straight/normal (a bit inclined). This is exactly what we will be&amp;nbsp;exploiting.&lt;/p&gt;
-&lt;p&gt;Consider the images shown in the above figure. Every image will contain some common portion with the other images. Due to this commonness we are able to say that $image \text{ x}$ will either lie on to the right or left side of $image \text{ y&amp;nbsp;}$.  &lt;/p&gt;
-&lt;p&gt;Anyway, now that I&amp;#8217;ve made that clear, let&amp;#8217;s proceed as to how do we calculate homography. Say you have a pair of images $I1 \text{ , } I2$ . You capture the first image. Then you decide to rotate your camera, or maybe perform some translation  or maybe a combination of rotation / translation motion. Then having update your new camera position , you capture a second image. The problem now at hand is, How do you solve for a system wherein you&amp;#8217;re required to create a transformation that efficiently maps a point that is being projected in both the images. Or in simple terms, How do you visualize one image w.r.t another point of view, given there is some information available about both your points of&amp;nbsp;views.&lt;/p&gt;
+&lt;p&gt;Consider the images shown in the above figure. Every image will contain some common portion with the other images. Due to this commonness we are able to say that &lt;span class="math"&gt;\(image \text{ x}\)&lt;/span&gt; will either lie on to the right or left side of &lt;span class="math"&gt;\(image \text{ y }\)&lt;/span&gt;.  &lt;/p&gt;
+&lt;p&gt;Anyway, now that I&amp;#8217;ve made that clear, let&amp;#8217;s proceed as to how do we calculate homography. Say you have a pair of images &lt;span class="math"&gt;\(I1 \text{ , } I2\)&lt;/span&gt; . You capture the first image. Then you decide to rotate your camera, or maybe perform some translation  or maybe a combination of rotation / translation motion. Then having update your new camera position , you capture a second image. The problem now at hand is, How do you solve for a system wherein you&amp;#8217;re required to create a transformation that efficiently maps a point that is being projected in both the images. Or in simple terms, How do you visualize one image w.r.t another point of view, given there is some information available about both your points of&amp;nbsp;views.&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
 &lt;img src="images/stitching/per.png" width="400" height="300" &gt;
 &lt;br&gt;
@@ -93,8 +93,8 @@ Also, to test, I will be using images from &lt;a href="http://study.marearts.com
 &lt;br&gt;
 &lt;caption&gt;Source :&lt;a href="http://stackoverflow.com/questions/13570140/how-to-use-homography-to-transform-pictures-in-opencv"&gt;This &lt;span class="caps"&gt;SO&lt;/span&gt; Post&lt;/a&gt; &lt;/caption&gt;
 &lt;/center&gt;&lt;/p&gt;
-&lt;p&gt;What you see above, can be an output of applying homography from $I1=H \times I2$ . &lt;a href="http://stackoverflow.com/questions/13570140/how-to-use-homography-to-transform-pictures-in-opencv"&gt;&lt;span class="caps"&gt;HOW&lt;/span&gt; &lt;span class="caps"&gt;TO&lt;/span&gt; use Homography&lt;/a&gt; to transform pictures in OpenCV? ( Check out this answer too. these pics have been taken from the aforementioned post&amp;nbsp;).&lt;/p&gt;
-&lt;p&gt;You can use &lt;a href="http://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html?highlight=findhomography#findhomography"&gt;opencv findhomography ( )&lt;/a&gt; method to solve for homography. For finding $I1=H \times I2$ you will need to pass coordinates of points in original image 1 plane and coordinates of target points in image 2 to the method. Once through, the method will spit out the homography&amp;nbsp;matrix&lt;/p&gt;
+&lt;p&gt;What you see above, can be an output of applying homography from &lt;span class="math"&gt;\(I1=H \times I2\)&lt;/span&gt; . &lt;a href="http://stackoverflow.com/questions/13570140/how-to-use-homography-to-transform-pictures-in-opencv"&gt;&lt;span class="caps"&gt;HOW&lt;/span&gt; &lt;span class="caps"&gt;TO&lt;/span&gt; use Homography&lt;/a&gt; to transform pictures in OpenCV? ( Check out this answer too. these pics have been taken from the aforementioned post&amp;nbsp;).&lt;/p&gt;
+&lt;p&gt;You can use &lt;a href="http://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html?highlight=findhomography#findhomography"&gt;opencv findhomography ( )&lt;/a&gt; method to solve for homography. For finding &lt;span class="math"&gt;\(I1=H \times I2\)&lt;/span&gt; you will need to pass coordinates of points in original image 1 plane and coordinates of target points in image 2 to the method. Once through, the method will spit out the homography&amp;nbsp;matrix&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;How to identify points to calculate homography&amp;nbsp;!&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;One of the straight forward methods is as&amp;nbsp;follows&lt;/p&gt;
@@ -183,8 +183,10 @@ Also, check out &lt;a href="http://docs.opencv.org/3.1.0/da/df5/tutorial_py_sift
 &lt;p&gt;&lt;strong&gt;Step 3: Compute&amp;nbsp;Homography&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Yes, once we have obtained matches between the images, our next step is to calculate the homography matrix. As described above, the homography matrix will use these matching points, to estimate a relative orientation transform within the two images.
 i.e. it&amp;#8217;ll solve for the equation
-&lt;center&gt;$$I_x = H \times I_y $$ &lt;/center&gt;
-Hence, it solves for the matrix&amp;nbsp;$H$&lt;/p&gt;
+&lt;center&gt;&lt;/p&gt;
+&lt;div class="math"&gt;$$I_x = H \times I_y $$&lt;/div&gt;
+&lt;p&gt; &lt;/center&gt;
+Hence, it solves for the matrix &lt;span class="math"&gt;\(H\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Well,  to estimate the homography is a simple task. If you are using opencv, it&amp;#8217;s a two line code. However , I&amp;#8217;d recommend that one implements&amp;nbsp;oneself.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;findHomography&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;srcPoints&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dstPoints&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RANSAC&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -192,14 +194,17 @@ Hence, it solves for the matrix&amp;nbsp;$H$&lt;/p&gt;
 
 &lt;p&gt;Viola ! Our homography matrix looks something like this&amp;nbsp;&amp;#8230;&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
-    $$ \begin{bmatrix}
-h_\text{11} &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; h_\text{12}  &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; h_\text{13} \ 
-h_\text{21} &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; h_\text{22} &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; h_\text{23}  \ 
-h_\text{31} &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; h_\text{32}   &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; h_\text{33}
-\end{bmatrix}&amp;nbsp;$$&lt;/p&gt;
+    &lt;/p&gt;
+&lt;div class="math"&gt;$$ \begin{bmatrix}
+h_\text{11} &amp;amp; h_\text{12}  &amp;amp; h_\text{13} \\ 
+h_\text{21} &amp;amp; h_\text{22} &amp;amp; h_\text{23}  \\ 
+h_\text{31} &amp;amp; h_\text{32}   &amp;amp; h_\text{33}
+\end{bmatrix} $$&lt;/div&gt;
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
-&lt;p&gt;Anyway, putting the pretty graphics aside, understand what the homography matrix is . Homography preserves the straight lines in an image. Hence the only possible transformations possible are translations, affines, etc. For example, for an affine transform, $$\begin{bmatrix} h_\text{31} &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; h_\text{32}   &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; h_\text{33} \end{bmatrix} = \text{[0 0 1]}$$
-Also, you can play around with $h_\text{13} \text{ and } \  h_\text{23}$ for&amp;nbsp;translation&lt;/p&gt;
+&lt;p&gt;Anyway, putting the pretty graphics aside, understand what the homography matrix is . Homography preserves the straight lines in an image. Hence the only possible transformations possible are translations, affines, etc. For example, for an affine&amp;nbsp;transform, &lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{bmatrix} h_\text{31} &amp;amp; h_\text{32}   &amp;amp; h_\text{33} \end{bmatrix} = \text{[0 0 1]}$$&lt;/div&gt;
+&lt;p&gt;
+Also, you can play around with &lt;span class="math"&gt;\(h_\text{13} \text{ and } \  h_\text{23}\)&lt;/span&gt; for&amp;nbsp;translation&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt; Step 4 : Warping &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; Stitching &lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;To understand stitching, I&amp;#8217;d like to recommend &lt;a href="http://www.pyimagesearch.com/2016/01/11/opencv-panorama-stitching/" target="_blank"&gt;Adrian Rosebrock&amp;#8217;s blog post on OpenCV Panorama stitching&lt;/a&gt;. His blog provides a wonderful explanation as to how to proceed with image stitching and panorama construction using 2&amp;nbsp;images.&lt;/p&gt;
 &lt;p&gt;So , once we have established a homography, i.e. we know how the second image (let&amp;#8217;s say the image to the right) will look from the current image&amp;#8217;s perspective, we need to transform it into a new space. This transformation mimics the phenomenon that we undergo. That is, the slightly distorted, and altered image that we see from our periphery . This process is called warping. We are converting an image, based on a new transformation. In this case, Im using a planar warping. What I&amp;#8217;m doing, is essentially change the plane of my field of view. Whereas, the &amp;#8220;panorama apps&amp;#8221; use something called as a Cylindrical and spherical warps&amp;nbsp;! &lt;/p&gt;
@@ -228,7 +233,7 @@ Also, you can play around with $h_\text{13} \text{ and } \  h_\text{23}$ for&amp
 
 &lt;p&gt;&lt;strong&gt;Stitching &amp;#8216;em up&amp;nbsp;! &lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Once, we have obtained a warped image, we simply add the warped image along with the second image. Repeat this over through leftward stitching and rightward stitching, and viola! We have our&amp;nbsp;output.&lt;/p&gt;
-&lt;p&gt;I&amp;#8217;ll get  a bit deeper as to how to perform the image joining part. Say, we have a homography matrix $H$ . If the starting coordinate of each image is $(0 ,0)$ and end point is $(r_e, c_e)$ , we can get the new warped image dimension by $start_p = H \times [0, 0]$ uptill $end_p = H \times [r_e, c_e]$. &lt;strong&gt;Note : If start_pt comes out to be negative&lt;/strong&gt; , account for a translational shift. i.e. &amp;#8220;perform translation shift to the image by $ |start_p |$&amp;#8221;. Also make sure that the homography matrix normalized such that the last row amounts to a unit&amp;nbsp;vector.&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ll get  a bit deeper as to how to perform the image joining part. Say, we have a homography matrix &lt;span class="math"&gt;\(H\)&lt;/span&gt; . If the starting coordinate of each image is &lt;span class="math"&gt;\((0 ,0)\)&lt;/span&gt; and end point is &lt;span class="math"&gt;\((r_e, c_e)\)&lt;/span&gt; , we can get the new warped image dimension by &lt;span class="math"&gt;\(start_p = H \times [0, 0]\)&lt;/span&gt; uptill &lt;span class="math"&gt;\(end_p = H \times [r_e, c_e]\)&lt;/span&gt;. &lt;strong&gt;Note : If start_pt comes out to be negative&lt;/strong&gt; , account for a translational shift. i.e. &amp;#8220;perform translation shift to the image by &lt;span class="math"&gt;\( |start_p |\)&lt;/span&gt;&lt;span class="dquo"&gt;&amp;#8220;&lt;/span&gt;. Also make sure that the homography matrix normalized such that the last row amounts to a unit&amp;nbsp;vector.&lt;/p&gt;
 &lt;p&gt;You can checkout the above mentioned explanation below 
 This is the implementation snippet from the actual code. Please look at the full code to understand in accordance with the&amp;nbsp;post.&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
@@ -422,4 +427,61 @@ You can click as well as test on other sources which deal in panorama and image&
 &lt;p&gt;[2]&amp;#8221;&lt;span class="caps"&gt;PASSTA&lt;/span&gt; Datasets&amp;#8221;, Cvl.isy.liu.se, 2016. [Online]. Available:&amp;nbsp;http://www.cvl.isy.liu.se/en/research/datasets/passta/.&lt;/p&gt;
 &lt;p&gt;[3] &amp;#8220;OpenCV Stitching example (Stitcher class, Panorama)&amp;#8221;, Study.marearts.com, 2013. [Online]. Available:&amp;nbsp;http://study.marearts.com/2013/11/opencv-stitching-example-stitcher-class.html.&lt;/p&gt;
 &lt;p&gt;[4] &amp;#8220;Github daeyun Image-Stitching Test Images&amp;#8221;, 2016. [Online]. Available:&amp;nbsp;https://github.com/daeyun/Image-Stitching/tree/master/img/hill. &lt;/p&gt;
-&lt;p&gt;[5] &amp;#8220;Github tsherlock Test Images&amp;#8221;, 2016. [Online]. Available: .&amp;nbsp;https://github.com/tsherlock/panorama/&lt;/p&gt;</summary><category term="CV"></category><category term="images"></category><category term="stitching"></category><category term="mosaicking"></category></entry></feed>
+&lt;p&gt;[5] &amp;#8220;Github tsherlock Test Images&amp;#8221;, 2016. [Online]. Available: .&amp;nbsp;https://github.com/tsherlock/panorama/&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' &amp;&amp; location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="CV"></category><category term="images"></category><category term="stitching"></category><category term="mosaicking"></category></entry></feed>
